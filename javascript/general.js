@@ -7,7 +7,7 @@
 
 var currentDate, errorOutput, categorySums, accountSums, grandSum;
 
-function initialize () {
+function initializeValues () {
   errorOutput=[];
   categorySums={};
   accountSums={};
@@ -40,7 +40,7 @@ function formatInDecimal(amountString) {
 
 function processDataInput () {
   var transactionsData, formattedOutput, parsedTransactions;
-  initialize();
+  initializeValues();
   transactionsData = $('#dataInput').val();
   parsedTransactions = parseTransactions(transactionsData);
   formattedOutput = formatTransactionsOutput(parsedTransactions);
@@ -63,7 +63,7 @@ function formatDateString (date) {
 }
 
 function formatSumsOutput () {
-  var formattedOutput='';
+  var formattedOutput='', categoryGrandSum=0, categorySum=0, percentOfTotal;
   formattedOutput += 'GRAND SUM' + '\n';
   formattedOutput += $.strPad(' ', 20, ' ') + $.strPad(formatInDecimal(grandSum.toString()), 15, ' ') + '\n';
 
@@ -72,10 +72,18 @@ function formatSumsOutput () {
     formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(accountSums[key].toString()), 15, ' ') + '\n';
   });
 
+  categoryGrandSum = getGrandSum(categorySums)
   formattedOutput += 'CATEGORIES' + '\n';
   Object.keys(categorySums).sort().forEach( function(key) {
-    formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySums[key].toString()), 15, ' ') + '\n';
+    categorySum = categorySums[key];
+    if(key[0]!='@') {
+      percentOfTotal = ((categorySum/categoryGrandSum)*100).toString().match(/\d+/)[0] + '%';
+      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(percentOfTotal, 8, ' ') + '\n';
+    } else {
+      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(' ', 8, ' ') + '\n';
+    }
   });
+  formattedOutput += $.strPad('TOTAL', 20, ' ') + $.strPad(formatInDecimal(categoryGrandSum.toString()), 15, ' ') + '\n';
 
   return formattedOutput;
 }
@@ -133,6 +141,8 @@ function parseTransactions (transactionsData) {
         break;
       case 'transaction row with date':
       case 'transaction row with no date':
+      case 'reconciled transaction row with date':
+      case 'reconciled transaction row with no date':
         transactionLineData = normalizeTransactionRow(transactionLineData);
         parsedTransactions.push(parseTransaction(transactionLineData));
         break;
@@ -184,4 +194,14 @@ function updateSum(sumObject, sumName, amount) {
   sumObject[sumName] = (currentAmount + amount);
 }
 
-initialize();
+function getGrandSum(sumObject) {
+  var grandSum = 0;
+  Object.keys(sumObject).forEach( function(key) {
+    if(key[0]!='@') grandSum += getSum(sumObject, key);
+  });
+  return grandSum;
+}
+
+
+
+initializeValues();
