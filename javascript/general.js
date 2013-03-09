@@ -7,7 +7,7 @@
 
 var currentDate, errorOutput, categorySums, accountSums, grandSum;
 
-function initializeValues () {
+function initialize () {
   errorOutput=[];
   categorySums={};
   accountSums={};
@@ -40,7 +40,7 @@ function formatInDecimal(amountString) {
 
 function processDataInput () {
   var transactionsData, formattedOutput, parsedTransactions;
-  initializeValues();
+  initialize();
   transactionsData = $('#dataInput').val();
   parsedTransactions = parseTransactions(transactionsData);
   formattedOutput = formatTransactionsOutput(parsedTransactions);
@@ -63,7 +63,7 @@ function formatDateString (date) {
 }
 
 function formatSumsOutput () {
-  var formattedOutput='', categoryGrandSum=0, categorySum=0, percentOfTotal;
+  var formattedOutput='';
   formattedOutput += 'GRAND SUM' + '\n';
   formattedOutput += $.strPad(' ', 20, ' ') + $.strPad(formatInDecimal(grandSum.toString()), 15, ' ') + '\n';
 
@@ -72,18 +72,10 @@ function formatSumsOutput () {
     formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(accountSums[key].toString()), 15, ' ') + '\n';
   });
 
-  categoryGrandSum = getGrandSum(categorySums)
   formattedOutput += 'CATEGORIES' + '\n';
   Object.keys(categorySums).sort().forEach( function(key) {
-    categorySum = categorySums[key];
-    if(key[0]!='@') {
-      percentOfTotal = ((categorySum/categoryGrandSum)*100).toString().match(/\d+/)[0] + '%';
-      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(percentOfTotal, 8, ' ') + '\n';
-    } else {
-      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(' ', 8, ' ') + '\n';
-    }
+    formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySums[key].toString()), 15, ' ') + '\n';
   });
-  formattedOutput += $.strPad('TOTAL', 20, ' ') + $.strPad(formatInDecimal(categoryGrandSum.toString()), 15, ' ') + '\n';
 
   return formattedOutput;
 }
@@ -91,37 +83,26 @@ function formatSumsOutput () {
 function formatTransactionsOutput (parsedTransactions) {
   var formattedOutput;
   formattedOutput = '';
-  formattedOutput += $.strPad('X', 2, ' ') + ' | ';
   formattedOutput += $.strPad('DATE', 12, ' ') + ' | ';
   formattedOutput += $.strPad('AMOUNT', 10, ' ') + ' | ';
   formattedOutput += $.strPad('CATEGORY', 10, ' ') + ' | ';
   formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' | \n';
   parsedTransactions.forEach( function(parsedTransaction) {
-    formattedOutput += $.strPad(parsedTransaction[0], 2, ' ') + ' | ';
-    formattedOutput += $.strPad(formatDateString(parsedTransaction[1]), 12, ' ') + ' | ';
-    formattedOutput += $.strPad(formatInDecimal(parsedTransaction[2].toString()), 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction[3].toString(), 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction[4].toString(), 10, ' ') + ' | \n';
+    formattedOutput += $.strPad(formatDateString(parsedTransaction[0]), 12, ' ') + ' | ';
+    formattedOutput += $.strPad(formatInDecimal(parsedTransaction[1].toString()), 10, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction[2].toString(), 10, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction[3].toString(), 10, ' ') + ' | \n';
   } );
   return formattedOutput;
 }
 
 function whatIsThisRow (dataString) {
-  var splitData;
   if(dataString.trim()=='') return 'empty row';
   if(hasDate(dataString)) {
     if(dataString.split(' ').length==1) return 'date only';
-    splitData = dataString.split(' ');
-    if(splitData.length>=3) {
-      if(splitData[0].trim()=='x') {
-        return 'reconciled transaction row with date';
-      } else {
-        return 'transaction row with date';
-      }
-    }
+    if(dataString.split(' ').length>=3) return 'transaction row with date';
   } else {
     if(dataString.match(/^-?\d+\.?\d{0,2}? /) && dataString.split(' ').length>=3) return 'transaction row with no date';
-    if(dataString.match(/^x -?\d+\.?\d{0,2}? /) && dataString.split(' ').length>=3) return 'reconciled transaction row with no date';
   }
   errorOutput.push('Unprocessed row: ' + dataString);
   return 'dont know';
@@ -152,8 +133,6 @@ function parseTransactions (transactionsData) {
         break;
       case 'transaction row with date':
       case 'transaction row with no date':
-      case 'reconciled transaction row with date':
-      case 'reconciled transaction row with no date':
         transactionLineData = normalizeTransactionRow(transactionLineData);
         parsedTransactions.push(parseTransaction(transactionLineData));
         break;
@@ -163,17 +142,12 @@ function parseTransactions (transactionsData) {
 }
 
 function parseTransaction (transactionText) {
-  var date, amount, category, account, convertedAmount, parsedTransaction;
+  var date, amount, category, account, convertedAmount;
   parsedTransaction = transactionText.trim().split(/ /);
-  // move array elements arround if not reconciled
-  if(parsedTransaction[0]!='x') {
-    parsedTransaction.unshift('');
-  }
-  reconciled = parsedTransaction[0];
-  date = new MyDate(parsedTransaction[1]);
-  amount = parseAmount(parsedTransaction[2]);
-  category = parsedTransaction[3];
-  account = parsedTransaction[4];
+  date = new MyDate(parsedTransaction[0]);
+  amount = parseAmount(parsedTransaction[1]);
+  category = parsedTransaction[2];
+  account = parsedTransaction[3];
 
   // update calculations
   // if is cashmx divide amount by 10 and only use modified amount to update category and grand sum
@@ -187,7 +161,7 @@ function parseTransaction (transactionText) {
   }
   updateSum(accountSums, account, amount);
 
-  return [reconciled, date, amount, category, account];
+  return [date, amount, category, account];
 }
 
 function parseAmount (amountString) {
@@ -210,14 +184,4 @@ function updateSum(sumObject, sumName, amount) {
   sumObject[sumName] = (currentAmount + amount);
 }
 
-function getGrandSum(sumObject) {
-  var grandSum = 0;
-  Object.keys(sumObject).forEach( function(key) {
-    if(key[0]!='@') grandSum += getSum(sumObject, key);
-  });
-  return grandSum;
-}
-
-
-
-initializeValues();
+initialize();
