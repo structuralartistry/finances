@@ -1,0 +1,101 @@
+<!--
+ todo
+  debug and get working with real data
+    implement category sum amount so can see what spend to date per period (total of all cats)
+      add a % column to show what % of total is the given cat sum
+      do want to implement @ on some cats so they are not included in sum?
+    implement reconciled so can see what have checked off in bank account
+    reconcile chap back to 1/1
+    reconcile balances on all accounts
+    enter all tax receipt info for 2012
+    format output in csv (maybe just use commas as delimiters? or?
+  live and work with this for a few days before doing more... should be enough of a dashboard
+
+  implement loading accounts and validation on data parse (maybe do delimited sections like ACCOUNTS, CATEGORIES, TRANSACTIONS, etc)
+  implement loading categories and validation on data parse
+  implement loading spending plan(s) - cagtegory and amount planned
+    do something so can copy last months plan outcome from page and just add to (column)
+  consider cleaning up creating new dates (or dont use new Date() at all...?
+
+  most important
+    period spent to date/month
+    account balances
+    cat spent to date vs planned
+
+  namespace test suite part?
+  namespace fixture data... build from nuclear element (transaction), not transactions...
+
+  think through how to: sum categories, for time period, for plans...
+  create categories (map shortcuts to names)
+  create category validation, output match failures
+  create accounts
+  create account validation warnings
+  create/input a plan for a period of time (category shortcut, planned amount)
+  output delta for plan (planned <> actual, total spent per, % differential)
+  output balances for accounts
+  color + and -
+  output plan and planned total
+
+  someday maybe
+    create (for fun) console like i/o, not html and fields, buttons...
+-->
+<html>
+<style>
+  body {
+    // background-color: black;
+    color: #00CC00;
+    font-size: 10px;
+  }
+  textarea {
+    // background-color: black;
+    color: #00CC00;
+  }
+  input {
+    // background-color: black;
+    color: #00CC00;
+  }
+</style>
+<script type='text/javascript' src='javascript/jquery.js'></script>
+<script type='text/javascript' src='javascript/general.js'></script>
+<script type='text/javascript' src='javascript/test/test_support.js'></script>
+<script type='text/javascript' src='javascript/test/general_tests.js'></script>
+<script>
+</script>
+
+<body>
+  <textarea id='dataInput' rows='4' cols='25'>
+    1/7/2012 -16.00 din cash
+    1/7/2012 -200 xfer cash
+    1/7/2012 -200 xfer cash
+    1/7/2012 -5.00 cafe cash
+    1/6/2012 -9.99 bus-books chap
+    1/6/2013 -24.44 groc chap
+    1/6/2013 -2 cafe cash
+    1/6/2013 -158.80 travel chap
+    1/5/2013 -29 fitness chap
+    1/5/2013 -44.5 fitness chap x
+    1/5/2013 -21 storage chap x
+    1/5/2013 -10 bus hosting chap
+    1/5/2013 -310.28 bus equip chap
+    1/4/2013 -20 transit chap
+    1/4/2013 -2 cafe cash
+    1/4/2013 -3 cafe cash
+    1/4/2013 -10 growth cash
+    1/3/2013 -5 cafe cash
+    1/3/2013 -30 groceries cash
+    1/2/2013 -3 cafe cash
+    1/2/2013 -5 laundry cash
+    1/2/2013 -3 cafe cash
+    1/1/2013 -28 dining cash
+    1/1/2013 -5 cafe cash
+    1/1/2013 -8 home exp cash
+    1/1/2013 -1 dining cash
+    1/1/2013 -3 cafe cash
+  </textarea>
+  <input type='submit' value='submit' onClick='processDataInput()'>
+  <pre id='errorOutput'></pre>
+  <pre id='sumsOutput'></pre>
+  <pre id='dataOutput'></pre>
+</body>
+
+</html>
