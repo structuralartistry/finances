@@ -259,7 +259,7 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.account, 'cash');
     });
 
-    test('minumum row with date', function () {
+    test('with date', function () {
       var parsedTransaction;
 
       parsedTransaction = parseTransaction('12/31/1999 -19.87 groc cash');
@@ -273,10 +273,25 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.account, 'cash');
     });
 
+    test('with reconciled', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('x -19.87 groc cash');
+
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.reconciled, true);
+      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+
+    });
+
+    test('with reconciled and date', function () {
+
+    });
+
 //    test('transaction', function () {
 //      // must have an amount, a category and an account
-//      assert(whatKindOfTransactionRow('-200.99 homex chap'), 'transaction');
-//      assert(whatKindOfTransactionRow('1/1/2013 -200.99 homex chap'), 'transaction');
 //      assert(whatKindOfTransactionRow('x 1/1/2013 -200.99 homex chap'), 'transaction');
 //      assert(whatKindOfTransactionRow('-200.99 homex chap some notes are here'), 'transaction');
 //      assert(whatKindOfTransactionRow('-200.99 homex chap /10'), 'transaction');

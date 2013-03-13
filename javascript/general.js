@@ -179,6 +179,7 @@ function parseTransaction (rowData) {
       foundAmount;
 
   transaction = {
+    reconciled: false,
     date: '',
     amount: 0,
     category: '',
@@ -197,6 +198,16 @@ function parseTransaction (rowData) {
   // minimum row must have 3 elements: amount, category and account
   splitData = rowData.split(/ /);
   if(splitData.length>=3) {
+
+    // reconciled processing
+    reconciled = rowData.match(/^x /);
+    if(reconciled!=null) {
+      transaction.reconciled = true;
+
+      // remove reconciled
+      rowData = rowData.replace(/^x /,'');
+      splitData = rowData.split(/ /);
+    }
 
     // date processing
     foundDate = rowData.match(/\d{1,2}\/\d{1,2}\/\d{4}/)
