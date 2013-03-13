@@ -5,6 +5,27 @@
 // note: not doing anything with reconciled or notes... use string.split(',', limit) to get notes
 // possibly use currency divisor, where would be the amout the amount is divided by to normalize in grand total and categories
 
+//text file >
+//parse raw >
+//  determine section
+//  if section is transactions
+//    determine row type
+//      date only > set current date
+//      transaction row
+//        parse row
+//          if does not have date then date is the set current date
+//          if does not have reconciled then is false
+//        ?
+//      empty > discard
+//      bad > output
+//
+//  if section is categories
+//
+//  if section is account
+//
+//
+//strategy: comment out to simplest (parseTransactionRow), get working and build up from there...
+
 var currentDate, errorOutput, categorySums, accountSums, grandSum;
 
 function initializeValues () {
@@ -201,7 +222,5 @@ function getGrandSum(sumObject) {
   });
   return grandSum;
 }
-
-
 
 initializeValues();
