@@ -254,9 +254,26 @@ describe('parseTransaction', function () {
       parsedTransaction = parseTransaction('-19.87 groc cash');
 
       assert(parsedTransaction.date, getCurrentDate());
-      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.currencyDivider, 1);
+    });
+
+    test('with decimal amount', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-19.87 groc cash');
+
+      assert(parsedTransaction.amount, -1987);
+    });
+
+    test('with non-decimal amount', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-19 groc cash');
+
+      assert(parsedTransaction.amount, -1900);
     });
 
     test('with date', function () {
@@ -268,7 +285,7 @@ describe('parseTransaction', function () {
       assert(getCurrentDate().toString(), new MyDate('12/31/1999').toString());
 
       assert(formatDateString(parsedTransaction.date), '12/31/1999');
-      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
     });
@@ -280,7 +297,7 @@ describe('parseTransaction', function () {
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, true);
-      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
     });
@@ -292,7 +309,7 @@ describe('parseTransaction', function () {
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, false);
-      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
     });
@@ -304,13 +321,36 @@ describe('parseTransaction', function () {
 
       assert(formatDateString(parsedTransaction.date), '12/31/1999');
       assert(parsedTransaction.reconciled, true);
-      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
     });
 
+    test('with currency divider', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-120.00 groc cash /10');
+
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.reconciled, false);
+      assert(parsedTransaction.amount, -1200);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.currencyDivider, 10);
+    });
+
     test('with notes', function () {
-assert(1,2);
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-120.00 groc cash my notes are here');
+
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.reconciled, false);
+      assert(parsedTransaction.amount, -12000);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.currencyDivider, 1);
+      assert(parsedTransaction.notes, 'my notes are here');
     });
 
 //    test('transaction', function () {

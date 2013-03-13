@@ -176,14 +176,16 @@ function parseTransaction (rowData) {
   var splitData,
       transaction,
       foundDate,
-      foundAmount;
+      foundAmount,
+      foundCurrencyDivider;
 
   transaction = {
     reconciled: false,
     date: '',
     amount: 0,
     category: '',
-    account: ''
+    account: '',
+    currencyDivider: 1
   }
 
   // empty
@@ -224,15 +226,33 @@ function parseTransaction (rowData) {
     }
 
     // amount processing
-    foundAmount = rowData.match(/-?\d+\.\d{1,2}/);
+    foundAmount = rowData.match(/-?\d+\.?\d{0,2}/);
     if(foundAmount==undefined) {
 
     } else {
-      transaction.amount = parseAmount(foundAmount);
+      transaction.amount = parseAmount(foundAmount[0]);
+
+      // check for currency divider
+      foundCurrencyDivider = rowData.match(/\/\d+/);
+      if(foundCurrencyDivider!=undefined) {
+        transaction.currencyDivider = parseInt(foundCurrencyDivider[0].replace('/', ''));
+        transaction.amount = (transaction.amount/transaction.currencyDivider);
+
+        // remove currency divider
+        rowData = rowData.replace(foundCurrencyDivider,'');
+        splitData = rowData.split(/ /);
+      }
+
+      // remove amount
+      rowData = rowData.replace(foundAmount[0],'');
+      splitData = rowData.split(/ /);
     }
 
     // category
     transaction.category = splitData[1];
+    // remove category
+    rowData = rowData.replace(transaction.category,'');
+    splitData = rowData.split(/ /);
 
     // account
     transaction.account = splitData[2];
