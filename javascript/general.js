@@ -172,27 +172,49 @@ function parseTransactions (transactionsData) {
   return parsedTransactions;
 }
 
-function parseTransaction (transactionText) {
+function parseTransaction (rowData) {
   var date, amount, category, account, convertedAmount;
-  parsedTransaction = transactionText.trim().split(/ /);
-  date = new MyDate(parsedTransaction[0]);
-  amount = parseAmount(parsedTransaction[1]);
-  category = parsedTransaction[2];
-  account = parsedTransaction[3];
 
-  // update calculations
-  // if is cashmx divide amount by 10 and only use modified amount to update category and grand sum
-  if(account=='cashmx') {
-    convertedAmount = amount/10;
-    updateSum(categorySums, category, convertedAmount);
-    grandSum = grandSum+convertedAmount;
-  } else {
-    updateSum(categorySums, category, amount);
-    grandSum = grandSum+amount;
+  // empty
+  if(rowData.trim()=='') return null;
+
+  // date only row
+  if(hasDate(rowData) && rowData.trim().split(/ /).length==1) {
+    setCurrentDate(new MyDate(rowData));
+    return null;
   }
-  updateSum(accountSums, account, amount);
 
-  return [date, amount, category, account];
+//  parsedTransaction = rowData.trim().split(/ /);
+//  date = new MyDate(parsedTransaction[0]);
+//  amount = parseAmount(parsedTransaction[1]);
+//  category = parsedTransaction[2];
+//  account = parsedTransaction[3];
+//
+//  // update calculations
+//  // if is cashmx divide amount by 10 and only use modified amount to update category and grand sum
+//  if(account=='cashmx') {
+//    convertedAmount = amount/10;
+//    updateSum(categorySums, category, convertedAmount);
+//    grandSum = grandSum+convertedAmount;
+//  } else {
+//    updateSum(categorySums, category, amount);
+//    grandSum = grandSum+amount;
+//  }
+//  updateSum(accountSums, account, amount);
+//
+//  return [date, amount, category, account];
+
+  errorOutput.push('Unprocessed row: ' + rowData);
+
+  return null;
+}
+
+function whatKindOfTransactionRow(rowData) {
+  if(rowData.trim()=='') return 'empty';
+  if(rowData.split(' ').length==1) return 'date only';
+  if(rowData.match(/^-?\d+\.?\d{0,2}? /) && rowData.split(' ').length>=3) return 'transaction';
+  errorOutput.push('Unprocessed row: ' + rowData);
+  return 'unparseable';
 }
 
 function parseAmount (amountString) {
