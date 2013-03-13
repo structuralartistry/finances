@@ -248,6 +248,31 @@ describe('parseTransaction', function () {
       assert(errorOutput[0], 'Unprocessed row: ' + unprocessableRow);
     });
 
+    test('minimum row with amount, cagetory and account', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-19.87 groc cash');
+
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+    });
+
+    test('minumum row with date', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('12/31/1999 -19.87 groc cash');
+
+      // sets current date as the transaction date
+      assert(getCurrentDate().toString(), new MyDate('12/31/1999').toString());
+
+      assert(formatDateString(parsedTransaction.date), '12/31/1999');
+      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+    });
+
 //    test('transaction', function () {
 //      // must have an amount, a category and an account
 //      assert(whatKindOfTransactionRow('-200.99 homex chap'), 'transaction');

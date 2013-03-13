@@ -173,7 +173,17 @@ function parseTransactions (transactionsData) {
 }
 
 function parseTransaction (rowData) {
-  var date, amount, category, account, convertedAmount;
+  var splitData,
+      transaction,
+      foundDate,
+      foundAmount;
+
+  transaction = {
+    date: '',
+    amount: 0,
+    category: '',
+    account: ''
+  }
 
   // empty
   if(rowData.trim()=='') return null;
@@ -184,6 +194,40 @@ function parseTransaction (rowData) {
     return null;
   }
 
+  // minimum row must have 3 elements: amount, category and account
+  splitData = rowData.split(/ /);
+  if(splitData.length>=3) {
+
+    // date processing
+    foundDate = rowData.match(/\d{1,2}\/\d{1,2}\/\d{4}/)
+    if(foundDate==undefined) {
+      transaction.date = getCurrentDate();
+    } else {
+      foundDate = foundDate[0];
+      transaction.date = new MyDate(foundDate);
+      setCurrentDate(transaction.date);
+
+      // remove the date from the rowData
+      rowData = rowData.replace(foundDate + ' ', '');
+      splitData = rowData.split(/ /);
+    }
+
+    // amount processing
+    foundAmount = rowData.match(/-?\d+\.\d{1,2}/);
+    if(foundAmount==undefined) {
+
+    } else {
+      transaction.amount = parseAmount(foundAmount);
+    }
+
+    // category
+    transaction.category = splitData[1];
+
+    // account
+    transaction.account = splitData[2];
+
+    return transaction;
+  }
 //  parsedTransaction = rowData.trim().split(/ /);
 //  date = new MyDate(parsedTransaction[0]);
 //  amount = parseAmount(parsedTransaction[1]);
