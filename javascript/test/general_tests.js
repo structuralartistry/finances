@@ -283,16 +283,38 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.amount, -198700);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
+    });
 
+    test('with NOT reconciled', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-19.87 groc cash');
+
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.reconciled, false);
+      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
     });
 
     test('with reconciled and date', function () {
+      var parsedTransaction;
 
+      parsedTransaction = parseTransaction('x 12/31/1999 -19.87 groc cash');
+
+      assert(formatDateString(parsedTransaction.date), '12/31/1999');
+      assert(parsedTransaction.reconciled, true);
+      assert(parsedTransaction.amount, -198700);
+      assert(parsedTransaction.category, 'groc');
+      assert(parsedTransaction.account, 'cash');
+    });
+
+    test('with notes', function () {
+assert(1,2);
     });
 
 //    test('transaction', function () {
 //      // must have an amount, a category and an account
-//      assert(whatKindOfTransactionRow('x 1/1/2013 -200.99 homex chap'), 'transaction');
 //      assert(whatKindOfTransactionRow('-200.99 homex chap some notes are here'), 'transaction');
 //      assert(whatKindOfTransactionRow('-200.99 homex chap /10'), 'transaction');
 //      assert(whatKindOfTransactionRow('x 1/1/2013 -200.99 homex chap /10 some notes are here'), 'transaction');
