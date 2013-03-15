@@ -185,7 +185,8 @@ function parseTransaction (rowData) {
     amount: 0,
     category: '',
     account: '',
-    currencyDivisor: 1
+    currencyDivisor: 1,
+    notes: ''
   }
 
   // empty
@@ -240,6 +241,9 @@ function parseTransaction (rowData) {
     // account
     transaction.account = splitData[0];
     splitData = removeFromArray(transaction.account, splitData);
+
+    // notes are any items in array remaining
+    transaction.notes = splitData.join(' ');
 
     return transaction;
   }

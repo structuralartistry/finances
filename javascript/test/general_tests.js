@@ -276,6 +276,22 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.amount, -1900);
     });
 
+    test('with positive amount', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('-19 groc cash');
+
+      assert(parsedTransaction.amount, -1900);
+    });
+
+    test('with negative amount', function () {
+      var parsedTransaction;
+
+      parsedTransaction = parseTransaction('19 groc cash');
+
+      assert(parsedTransaction.amount, 1900);
+    });
+
     test('with date', function () {
       var parsedTransaction;
 
@@ -352,14 +368,6 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.currencyDivisor, 1);
       assert(parsedTransaction.notes, 'my notes are here');
     });
-
-//    test('transaction', function () {
-//      // must have an amount, a category and an account
-//      assert(whatKindOfTransactionRow('-200.99 homex chap some notes are here'), 'transaction');
-//      assert(whatKindOfTransactionRow('-200.99 homex chap /10'), 'transaction');
-//      assert(whatKindOfTransactionRow('x 1/1/2013 -200.99 homex chap /10 some notes are here'), 'transaction');
-//    });
-//
 
   });
 
