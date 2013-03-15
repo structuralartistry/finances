@@ -135,7 +135,7 @@ function parseTransactions (transactionsData) {
   parsedTransactions = [];
   transactionsData.split('\n').forEach( function(transactionLineData) {
     parsedTransaction = parseTransaction(transactionLineData);
-    if(parsedTransaction) parsedTransactions.push(parseTransaction(transactionLineData));
+    if(parsedTransaction) parsedTransactions.push(parsedTransaction);
   });
   return parsedTransactions;
 }
@@ -144,7 +144,8 @@ function parseTransaction (rowData) {
   var splitData,
       transaction,
       foundDate,
-      foundCurrencyDivisor;
+      foundCurrencyDivisor,
+      adjustedAmount;
 
   transaction = {
     reconciled: false,
@@ -164,6 +165,8 @@ function parseTransaction (rowData) {
     setCurrentDate(new MyDate(rowData));
     return null;
   }
+
+  rowData = setMexicanPesoAccounts(rowData);
 
   // minimum row must have 3 elements: amount, category and account
   splitData = rowData.split(/ /);
@@ -212,11 +215,32 @@ function parseTransaction (rowData) {
     // notes are any items in array remaining
     transaction.notes = splitData.join(' ');
 
+    // update calculations
+    // if there is a currency divisor we want this to apply to category and grand sum (for uniformity)
+    // but not to account sums as we want the account to have integrity in its home currency, not
+    // normalized to dollars
+    if(transaction.currencyDivisor!=1) {
+      adjustedAmount = transaction.amount/transaction.currencyDivisor;
+      updateSum(categorySums, transaction.category, adjustedAmount);
+      grandSum = grandSum+adjustedAmount;
+    } else {
+      updateSum(categorySums, transaction.category, transaction.amount);
+      grandSum = grandSum+transaction.amount;
+    }
+    updateSum(accountSums, transaction.account, transaction.amount);
+
     return transaction;
   }
 
   errorOutput.push('Unprocessed row: ' + rowData);
   return null;
+}
+
+// this is so dont have to always enter currency divider....
+// in future once we have account list perhaps we assign currency divider to account type and
+// not transaction type
+function setMexicanPesoAccounts(rowData) {
+  return rowData.replace(/cashmx/, 'cashmx /10');
 }
 
 function removeFromArray(toRemove, arr) {

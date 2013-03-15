@@ -174,41 +174,41 @@ describe('parseTransactions', function () {
       assert(categorySums['transfer'], 0);
     });
 
-//    test('accountSums', function () {
-//      accountSums = {}
-//      parseTransactions(data);
-//      assert(accountSums['cash'], 97703);
-//      assert(accountSums['chap'], 867956);
-//    });
-//
-//    test('grandSum', function () {
-//      grandSum = 0;
-//      parseTransactions(data);
-//      assert(grandSum, 965659);
-//    });
-//
-//    test('mexican peso conversion', function () {
-//      grandSum = 0;
-//      accountSums = {};
-//      categorySums = {};
-//
-//      data = '';
-//      data += '-50 dining cashmx\n'
-//      data += '-5 groceries cash\n'
-//      data += '1000 xfer cashmx\n'
-//
-//      parseTransactions(data);
-//
-//      // cashmx is divided by 10
-//      assert(grandSum, 9000);
-//      assert(categorySums['dining'], -500);
-//      assert(categorySums['groceries'], -500);
-//      assert(categorySums['xfer'], 10000);
-//
-//      // but not for account
-//      assert(accountSums['cashmx'], 95000);
-//    });
-//
+    test('accountSums', function () {
+      accountSums = {}
+      parseTransactions(data);
+      assert(accountSums['cash'], 97703);
+      assert(accountSums['chap'], 867956);
+    });
+
+    test('grandSum', function () {
+      grandSum = 0;
+      parseTransactions(data);
+      assert(grandSum, 965659);
+    });
+
+    test('mexican peso conversion', function () {
+      grandSum = 0;
+      accountSums = {};
+      categorySums = {};
+
+      data = '';
+      data += '-50 dining cashmx\n'
+      data += '-5 groceries cash\n'
+      data += '1000 xfer cashmx\n'
+
+      parseTransactions(data);
+
+      // cashmx is divided by 10
+      assert(grandSum, 9000);
+      assert(categorySums['dining'], -500);
+      assert(categorySums['groceries'], -500);
+      assert(categorySums['xfer'], 10000);
+
+      // but not for account
+      assert(accountSums['cashmx'], 95000);
+    });
+
   });
 
 });
