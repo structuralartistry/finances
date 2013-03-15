@@ -1,7 +1,7 @@
 // syntax
 // TRANSACTIONS
 //   date
-//   [reconciled(x)] [date] amount category account "notes" /currency_divisor
+//   [reconciled(x)] [date] amount category account /currency_divisor "notes"
 // note: not doing anything with reconciled or notes... use string.split(',', limit) to get notes
 // possibly use currency divisor, where would be the amout the amount is divided by to normalize in grand total and categories
 
@@ -177,7 +177,7 @@ function parseTransaction (rowData) {
       transaction,
       foundDate,
       foundAmount,
-      foundCurrencyDivider;
+      foundCurrencyDivisor;
 
   transaction = {
     reconciled: false,
@@ -185,7 +185,7 @@ function parseTransaction (rowData) {
     amount: 0,
     category: '',
     account: '',
-    currencyDivider: 1
+    currencyDivisor: 1
   }
 
   // empty
@@ -202,13 +202,9 @@ function parseTransaction (rowData) {
   if(splitData.length>=3) {
 
     // reconciled processing
-    reconciled = rowData.match(/^x /);
-    if(reconciled!=null) {
+    if(splitData[0]=='x') {
       transaction.reconciled = true;
-
-      // remove reconciled
-      rowData = rowData.replace(/^x /,'');
-      splitData = rowData.split(/ /);
+      splitData = removeFromArray(splitData[0], splitData);
     }
 
     // date processing
@@ -216,46 +212,34 @@ function parseTransaction (rowData) {
     if(foundDate==undefined) {
       transaction.date = getCurrentDate();
     } else {
-      foundDate = foundDate[0];
-      transaction.date = new MyDate(foundDate);
+      transaction.date = new MyDate(foundDate[0]);
       setCurrentDate(transaction.date);
-
-      // remove the date from the rowData
-      rowData = rowData.replace(foundDate + ' ', '');
-      splitData = rowData.split(/ /);
+      splitData = removeFromArray(foundDate, splitData);
     }
 
     // amount processing
-    foundAmount = rowData.match(/-?\d+\.?\d{0,2}/);
-    if(foundAmount==undefined) {
+    if(splitData[0].match(/-?\d+\.?\d{0,2}/)) {
+      transaction.amount = parseAmount(splitData[0]);
 
-    } else {
-      transaction.amount = parseAmount(foundAmount[0]);
-
-      // check for currency divider
-      foundCurrencyDivider = rowData.match(/\/\d+/);
-      if(foundCurrencyDivider!=undefined) {
-        transaction.currencyDivider = parseInt(foundCurrencyDivider[0].replace('/', ''));
-        transaction.amount = (transaction.amount/transaction.currencyDivider);
-
-        // remove currency divider
-        rowData = rowData.replace(foundCurrencyDivider,'');
-        splitData = rowData.split(/ /);
+      // check for currency divisor
+      splitData.forEach( function(e) {
+        if(e.match(/\/\d+/)) foundCurrencyDivisor = e;
+      });
+      if(foundCurrencyDivisor!=undefined) {
+        transaction.currencyDivisor = parseInt(foundCurrencyDivisor[0].replace('/', ''));
+        transaction.amount = (transaction.amount/transaction.currencyDivisor);
+        splitData = removeFromArray(foundCurrencyDivisor, splitData);
       }
-
-      // remove amount
-      rowData = rowData.replace(foundAmount[0],'');
-      splitData = rowData.split(/ /);
+      splitData = removeFromArray(splitData[0], splitData);
     }
 
     // category
-    transaction.category = splitData[1];
-    // remove category
-    rowData = rowData.replace(transaction.category,'');
-    splitData = rowData.split(/ /);
+    transaction.category = splitData[0];
+    splitData = removeFromArray(transaction.category, splitData);
 
     // account
-    transaction.account = splitData[2];
+    transaction.account = splitData[0];
+    splitData = removeFromArray(transaction.account, splitData);
 
     return transaction;
   }
@@ -282,6 +266,14 @@ function parseTransaction (rowData) {
   errorOutput.push('Unprocessed row: ' + rowData);
 
   return null;
+}
+
+function removeFromArray(toRemove, arr) {
+  var returnArr = [];
+  arr.forEach( function(e) {
+    if(!e.match(toRemove)) returnArr.push(e);
+  });
+  return returnArr;
 }
 
 function whatKindOfTransactionRow(rowData) {

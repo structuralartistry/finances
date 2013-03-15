@@ -257,7 +257,7 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
-      assert(parsedTransaction.currencyDivider, 1);
+      assert(parsedTransaction.currencyDivisor, 1);
     });
 
     test('with decimal amount', function () {
@@ -326,7 +326,7 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.account, 'cash');
     });
 
-    test('with currency divider', function () {
+    test('with currency divisor', function () {
       var parsedTransaction;
 
       parsedTransaction = parseTransaction('-120.00 groc cash /10');
@@ -336,7 +336,7 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.amount, -1200);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
-      assert(parsedTransaction.currencyDivider, 10);
+      assert(parsedTransaction.currencyDivisor, 10);
     });
 
     test('with notes', function () {
@@ -349,7 +349,7 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.amount, -12000);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
-      assert(parsedTransaction.currencyDivider, 1);
+      assert(parsedTransaction.currencyDivisor, 1);
       assert(parsedTransaction.notes, 'my notes are here');
     });
 
