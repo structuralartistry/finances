@@ -226,7 +226,7 @@ function parseTransaction (rowData) {
         if(e.match(/\/\d+/)) foundCurrencyDivisor = e;
       });
       if(foundCurrencyDivisor!=undefined) {
-        transaction.currencyDivisor = parseInt(foundCurrencyDivisor[0].replace('/', ''));
+        transaction.currencyDivisor = parseInt(foundCurrencyDivisor.replace('/', ''));
         transaction.amount = (transaction.amount/transaction.currencyDivisor);
         splitData = removeFromArray(foundCurrencyDivisor, splitData);
       }
