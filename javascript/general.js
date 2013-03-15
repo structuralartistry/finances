@@ -125,49 +125,17 @@ function formatTransactionsOutput (parsedTransactions) {
   return formattedOutput;
 }
 
-function whatIsThisRow (dataString) {
-  if(dataString.trim()=='') return 'empty row';
-  if(hasDate(dataString)) {
-    if(dataString.split(' ').length==1) return 'date only';
-    if(dataString.split(' ').length>=3) return 'transaction row with date';
-  } else {
-    if(dataString.match(/^-?\d+\.?\d{0,2}? /) && dataString.split(' ').length>=3) return 'transaction row with no date';
-  }
-  errorOutput.push('Unprocessed row: ' + dataString);
-  return 'dont know';
-}
-
-function normalizeTransactionRow (dataString) {
-  dataString = dataString.trim();
-  if(!hasDate(dataString)) {
-    dataString = formatDateString(getCurrentDate()) + ' ' + dataString;
-  }
-
-  return dataString;
-}
-
 function hasDate(dataString) {
   if(dataString.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) return true;
   return false;
 }
 
 function parseTransactions (transactionsData) {
-  var parsedTransactions, rowType;
+  var parsedTransactions, parsedTransaction;
   parsedTransactions = [];
   transactionsData.split('\n').forEach( function(transactionLineData) {
-    rowType = whatIsThisRow(transactionLineData);
-    switch(rowType) {
-      case 'date only':
-        setCurrentDate(new MyDate(transactionLineData));
-        break;
-      case 'transaction row with date':
-      case 'transaction row with no date':
-      case 'reconciled transaction row with date':
-      case 'reconciled transaction row with no date':
-        transactionLineData = normalizeTransactionRow(transactionLineData);
-        parsedTransactions.push(parseTransaction(transactionLineData));
-        break;
-    }
+    parsedTransaction = parseTransaction(transactionLineData);
+    if(parsedTransaction) parsedTransactions.push(parseTransaction(transactionLineData));
   });
   return parsedTransactions;
 }
@@ -176,7 +144,6 @@ function parseTransaction (rowData) {
   var splitData,
       transaction,
       foundDate,
-      foundAmount,
       foundCurrencyDivisor;
 
   transaction = {
@@ -247,28 +214,8 @@ function parseTransaction (rowData) {
 
     return transaction;
   }
-//  parsedTransaction = rowData.trim().split(/ /);
-//  date = new MyDate(parsedTransaction[0]);
-//  amount = parseAmount(parsedTransaction[1]);
-//  category = parsedTransaction[2];
-//  account = parsedTransaction[3];
-//
-//  // update calculations
-//  // if is cashmx divide amount by 10 and only use modified amount to update category and grand sum
-//  if(account=='cashmx') {
-//    convertedAmount = amount/10;
-//    updateSum(categorySums, category, convertedAmount);
-//    grandSum = grandSum+convertedAmount;
-//  } else {
-//    updateSum(categorySums, category, amount);
-//    grandSum = grandSum+amount;
-//  }
-//  updateSum(accountSums, account, amount);
-//
-//  return [date, amount, category, account];
 
   errorOutput.push('Unprocessed row: ' + rowData);
-
   return null;
 }
 

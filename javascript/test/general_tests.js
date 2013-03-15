@@ -102,78 +102,78 @@ describe('hasDate', function () {
   });
 });
 
-//describe('parseTransactions', function () {
-//
-//  test('simple data', function () {
-//    result = parseTransactions(fixtureTransactionsData1);
-//    assert(result.length, 5);
-//    assert(result[0][1], 1298);
-//    assert(result[4][1], 70000);
-//  });
-//
-//  test('complex data', function () {
-//    var data = '';
-//    data += '1/17/2013\n';
-//    data += '-200 xfer chap\n';
-//    data += '200 xfer cash\n';
-//    data += '-80 growth cash\n';
-//    data += '-10 transit cash\n';
-//    data += '\n';
-//    data += '1/16/2013 3 cafe cash\n';
-//    data += '\n';
-//    data += '1/15/2013\n';
-//    data += '-4.00 groc cash\n';
-//    data += '\n';
-//    data += '12/14/2012 26.28 groc cash\n';
-//
-//    result = parseTransactions(data);
-//    assert(result.length, 7);
-//    assert(formatDateString(result[0][0]), '1/17/2013');
-//    assert(formatDateString(result[1][0]), '1/17/2013');
-//    assert(formatDateString(result[2][0]), '1/17/2013');
-//    assert(formatDateString(result[3][0]), '1/17/2013');
-//    assert(formatDateString(result[4][0]), '1/16/2013');
-//    assert(formatDateString(result[5][0]), '1/15/2013');
-//    assert(formatDateString(result[6][0]), '12/14/2012');
-//  });
-//
-//  describe('sums', function () {
-//
-//    var data = '';
-//    data += '-10 dining cash\n'
-//    data += '-12.97 groceries cash\n'
-//    data += '-232.81 travel chap\n'
-//    data += '10000 income chap\n'
-//    data += '-1000 transfer chap\n'
-//    data += '1000 transfer cash\n'
-//    data += '-87.63 groceries chap\n'
-//
-//    test('getSum', function () {
-//      sumObject = {}
-//      assert(getSum('category_a'), 0);
-//      sumObject['category_a']=1234;
-//      assert(getSum(sumObject, 'category_a'), 1234);
-//    });
-//
-//    test('updateSum', function () {
-//      sumObject = {}
-//      assert(sumObject['somecat'], undefined);
-//      updateSum(sumObject, 'somecat', 5432);
-//      assert(sumObject['somecat'], 5432);
-//      updateSum(sumObject, 'somecat', 12);
-//      assert(sumObject['somecat'], 5444);
-//    });
-//
-//    test('categorySums', function () {
-//      categorySums = {}
-//      parseTransactions(data);
-//      assert(categorySums['dining'], -1000);
-//      assert(categorySums['groceries'], -10060);
-//      assert(categorySums['travel'], -23281);
-//      assert(categorySums['income'], 1000000);
-//      assert(categorySums['transfer'], 0);
-//    });
-//
+describe('parseTransactions', function () {
+
+  test('simple data', function () {
+    result = parseTransactions(fixtureTransactionsData1);
+    assert(result.length, 5);
+    assert(result[0].amount, 1298);
+    assert(result[4].amount, 70000);
+  });
+
+  test('complex data', function () {
+    var data = '';
+    data += '1/17/2013\n';
+    data += '-200 xfer chap\n';
+    data += '200 xfer cash\n';
+    data += '-80 growth cash\n';
+    data += '-10 transit cash\n';
+    data += '\n';
+    data += '1/16/2013 3 cafe cash\n';
+    data += '\n';
+    data += '1/15/2013\n';
+    data += '-4.00 groc cash\n';
+    data += '\n';
+    data += '12/14/2012 26.28 groc cash\n';
+
+    result = parseTransactions(data);
+    assert(result.length, 7);
+    assert(formatDateString(result[0].date), '1/17/2013');
+    assert(formatDateString(result[1].date), '1/17/2013');
+    assert(formatDateString(result[2].date), '1/17/2013');
+    assert(formatDateString(result[3].date), '1/17/2013');
+    assert(formatDateString(result[4].date), '1/16/2013');
+    assert(formatDateString(result[5].date), '1/15/2013');
+    assert(formatDateString(result[6].date), '12/14/2012');
+  });
+
+  describe('sums', function () {
+
+    var data = '';
+    data += '-10 dining cash\n'
+    data += '-12.97 groceries cash\n'
+    data += '-232.81 travel chap\n'
+    data += '10000 income chap\n'
+    data += '-1000 transfer chap\n'
+    data += '1000 transfer cash\n'
+    data += '-87.63 groceries chap\n'
+
+    test('getSum', function () {
+      sumObject = {}
+      assert(getSum('category_a'), 0);
+      sumObject['category_a']=1234;
+      assert(getSum(sumObject, 'category_a'), 1234);
+    });
+
+    test('updateSum', function () {
+      sumObject = {}
+      assert(sumObject['somecat'], undefined);
+      updateSum(sumObject, 'somecat', 5432);
+      assert(sumObject['somecat'], 5432);
+      updateSum(sumObject, 'somecat', 12);
+      assert(sumObject['somecat'], 5444);
+    });
+
+    test('categorySums', function () {
+      categorySums = {}
+      parseTransactions(data);
+      assert(categorySums['dining'], -1000);
+      assert(categorySums['groceries'], -10060);
+      assert(categorySums['travel'], -23281);
+      assert(categorySums['income'], 1000000);
+      assert(categorySums['transfer'], 0);
+    });
+
 //    test('accountSums', function () {
 //      accountSums = {}
 //      parseTransactions(data);
@@ -209,9 +209,9 @@ describe('hasDate', function () {
 //      assert(accountSums['cashmx'], 95000);
 //    });
 //
-//  });
-//
-//});
+  });
+
+});
 
 test('formatDateString', function () {
   var dateStrings;
@@ -370,16 +370,6 @@ describe('parseTransaction', function () {
     });
 
   });
-
-
-//  test('debit transaction', function () {
-//    var parsedTransaction;
-//    parsedTransaction = parseTransaction('1/7/2012 -16.00 din cash');
-//    assert(parsedTransaction[0].toString(), new MyDate('1/7/2012').toString());
-//    assert(parsedTransaction[1], -1600);
-//    assert(parsedTransaction[2], 'din');
-//    assert(parsedTransaction[3], 'cash');
-//  });
 
 });
 
