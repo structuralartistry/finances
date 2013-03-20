@@ -7,7 +7,8 @@ fixtureTransactionsData1 += '12/10/2011 700 rent cash\n';
 
 // reconciled date amount cat acc currdiv notes
 describe('UI tests', function () {
-  test('processDataInput', function () {
+
+  test('formatTransactionsOutput', function () {
     var formattedOutput, parsedTransactions, expectedOutput;
     parsedTransactions = parseTransactions(fixtureTransactionsData1);
 
@@ -22,22 +23,6 @@ describe('UI tests', function () {
 
     assert(formattedOutput, expectedOutput);
   });
-
-//  test('formatTransactionsOutput', function () {
-//    var formattedOutput, parsedTransactions, expectedOutput;
-//    parsedTransactions = parseTransactions(fixtureTransactionsData1);
-//
-//    expectedOutput  = '        DATE |     AMOUNT |   CATEGORY |    ACCOUNT | \n'
-//    expectedOutput += '   1/12/2012 |      12.98 |     dining |       cash | \n'
-//    expectedOutput += '   1/12/2012 |       3.45 |       cafe |       cash | \n'
-//    expectedOutput += '   1/11/2012 |      20.00 |    transit |       chap | \n'
-//    expectedOutput += '   1/11/2012 |      34.52 |       groc |       chap | \n'
-//    expectedOutput += '  12/10/2011 |     700.00 |       rent |       cash | \n'
-//
-//    formattedOutput = formatTransactionsOutput(parsedTransactions);
-//
-//    assert(formattedOutput, expectedOutput);
-//  });
 
   test('formatInDecimal', function () {
     assert(formatInDecimal('1000'), '10.00');
