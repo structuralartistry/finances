@@ -197,6 +197,7 @@ function parseTransaction (rowData) {
       splitData = removeFromArray(splitData[0], splitData);
     }
     // marking all transactions reconciled that are not 'chap' for now
+    // this may also be an account setting later, like 'autoReconciled'
     if(rowData.indexOf('chap')==-1) transaction.reconciled = true;
 
     // date processing
