@@ -12,12 +12,12 @@ describe('UI tests', function () {
     var formattedOutput, parsedTransactions, expectedOutput;
     parsedTransactions = parseTransactions(fixtureTransactionsData1);
 
-    expectedOutput  = ' x |         DATE |     AMOUNT |   CATEGORY |    ACCOUNT |  CURR | NOTES\n'
-    expectedOutput += '   |    1/12/2012 |      12.98 |     dining |       cash |     1 |  \n'
-    expectedOutput += '   |    1/12/2012 |       3.45 |       cafe |       cash |     1 |  \n'
-    expectedOutput += '   |    1/11/2012 |      20.00 |    transit |       chap |     1 |  \n'
-    expectedOutput += '   |    1/11/2012 |      34.52 |       groc |       chap |     1 |  \n'
-    expectedOutput += '   |   12/10/2011 |     700.00 |       rent |       cash |     1 |  \n'
+    expectedOutput  = ' x ,         DATE ,     AMOUNT ,   CATEGORY ,    ACCOUNT ,  CURR , NOTES\n'
+    expectedOutput += ' x ,    1/12/2012 ,      12.98 ,     dining ,       cash ,     1 ,  \n'
+    expectedOutput += ' x ,    1/12/2012 ,       3.45 ,       cafe ,       cash ,     1 ,  \n'
+    expectedOutput += '   ,    1/11/2012 ,      20.00 ,    transit ,       chap ,     1 ,  \n'
+    expectedOutput += '   ,    1/11/2012 ,      34.52 ,       groc ,       chap ,     1 ,  \n'
+    expectedOutput += ' x ,   12/10/2011 ,     700.00 ,       rent ,       cash ,     1 ,  \n'
 
     formattedOutput = formatTransactionsOutput(parsedTransactions);
 

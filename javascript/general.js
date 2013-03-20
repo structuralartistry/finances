@@ -134,20 +134,20 @@ function formatSumsOutput () {
 function formatTransactionsOutput (parsedTransactions) {
   var formattedOutput;
   formattedOutput = '';
-  formattedOutput += $.strPad('x', 2, ' ') + ' | ';
-  formattedOutput += $.strPad('DATE', 12, ' ') + ' | ';
-  formattedOutput += $.strPad('AMOUNT', 10, ' ') + ' | ';
-  formattedOutput += $.strPad('CATEGORY', 10, ' ') + ' | ';
-  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' | ';
-  formattedOutput += $.strPad('CURR', 5, ' ') + ' | ';
+  formattedOutput += $.strPad('x', 2, ' ') + ' , ';
+  formattedOutput += $.strPad('DATE', 12, ' ') + ' , ';
+  formattedOutput += $.strPad('AMOUNT', 10, ' ') + ' , ';
+  formattedOutput += $.strPad('CATEGORY', 10, ' ') + ' , ';
+  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' , ';
+  formattedOutput += $.strPad('CURR', 5, ' ') + ' , ';
   formattedOutput += $.strPad('NOTES', 1, ' ') + '\n';
   parsedTransactions.forEach( function(parsedTransaction) {
-    formattedOutput += $.strPad( (parsedTransaction.reconciled ? 'x' : '') , 2, ' ') + ' | ';
-    formattedOutput += $.strPad(formatDateString(parsedTransaction.date), 12, ' ') + ' | ';
-    formattedOutput += $.strPad(formatInDecimal(parsedTransaction.amount.toString()), 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction.category, 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction.account, 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction.currencyDivisor, 5, ' ') + ' | ';
+    formattedOutput += $.strPad( (parsedTransaction.reconciled ? 'x' : '') , 2, ' ') + ' , ';
+    formattedOutput += $.strPad(formatDateString(parsedTransaction.date), 12, ' ') + ' , ';
+    formattedOutput += $.strPad(formatInDecimal(parsedTransaction.amount.toString()), 10, ' ') + ' , ';
+    formattedOutput += $.strPad(parsedTransaction.category, 10, ' ') + ' , ';
+    formattedOutput += $.strPad(parsedTransaction.account, 10, ' ') + ' , ';
+    formattedOutput += $.strPad(parsedTransaction.currencyDivisor, 5, ' ') + ' , ';
     formattedOutput += $.strPad(parsedTransaction.notes, 1, ' ') + '\n';
   } );
   return formattedOutput;
@@ -185,7 +185,7 @@ function parseTransaction (rowData) {
     return null;
   }
 
-  rowData = setMexicanPesoAccounts(rowData);
+  rowData = preProcessTransactionRow(rowData);
 
   // minimum row must have 3 elements: amount, category and account
   splitData = rowData.split(/ /);
@@ -196,6 +196,8 @@ function parseTransaction (rowData) {
       transaction.reconciled = true;
       splitData = removeFromArray(splitData[0], splitData);
     }
+    // marking all transactions reconciled that are not 'chap' for now
+    if(rowData.indexOf('chap')==-1) transaction.reconciled = true;
 
     // date processing
     foundDate = rowData.match(/\d{1,2}\/\d{1,2}\/\d{4}/)
@@ -250,7 +252,7 @@ function parseTransaction (rowData) {
 // this is so dont have to always enter currency divider....
 // in future once we have account list perhaps we assign currency divider to account type and
 // not transaction type
-function setMexicanPesoAccounts(rowData) {
+function preProcessTransactionRow(rowData) {
   return rowData.replace(/cashmx/, 'cashmx /10');
 }
 
