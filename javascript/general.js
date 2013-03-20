@@ -51,6 +51,28 @@ var MyDate = function (dateString) {
   return new Date(parsedDate[2], Number(parsedDate[0])-1, parsedDate[1]);
 }
 
+var Transaction = function () {
+  var transaction = {
+    reconciled: false,
+    date: '',
+    amount: 0,
+    category: '',
+    account: '',
+    currencyDivisor: 1,
+    notes: ''
+  }
+
+  transaction.adjustedAmount = function () {
+    return this.amount/this.currencyDivisor;
+  }
+
+  transaction.setAmount = function (rawAmount) {
+    this.amount = parseAmount(rawAmount);
+  }
+
+  return transaction;
+}
+
 function formatInDecimal(amountString) {
   if(amountString.trim()=='') return '0.00';
   if(parseInt(amountString)==0) return '0.00';
@@ -144,18 +166,9 @@ function parseTransaction (rowData) {
   var splitData,
       transaction,
       foundDate,
-      foundCurrencyDivisor,
-      adjustedAmount;
+      foundCurrencyDivisor;
 
-  transaction = {
-    reconciled: false,
-    date: '',
-    amount: 0,
-    category: '',
-    account: '',
-    currencyDivisor: 1,
-    notes: ''
-  }
+  transaction = new Transaction();
 
   // empty
   if(rowData.trim()=='') return null;
@@ -190,7 +203,7 @@ function parseTransaction (rowData) {
 
     // amount processing
     if(splitData[0].match(/-?\d+\.?\d{0,2}/)) {
-      transaction.amount = parseAmount(splitData[0]);
+      transaction.setAmount(splitData[0]);
 
       // check for currency divisor
       splitData.forEach( function(e) {
@@ -198,7 +211,7 @@ function parseTransaction (rowData) {
       });
       if(foundCurrencyDivisor!=undefined) {
         transaction.currencyDivisor = parseInt(foundCurrencyDivisor.replace('/', ''));
-        transaction.amount = (transaction.amount/transaction.currencyDivisor);
+        //transaction.amount = (transaction.amount/transaction.currencyDivisor);
         splitData = removeFromArray(foundCurrencyDivisor, splitData);
       }
       splitData = removeFromArray(splitData[0], splitData);
@@ -216,17 +229,9 @@ function parseTransaction (rowData) {
     transaction.notes = splitData.join(' ');
 
     // update calculations
-    // if there is a currency divisor we want this to apply to category and grand sum (for uniformity)
-    // but not to account sums as we want the account to have integrity in its home currency, not
-    // normalized to dollars
-    if(transaction.currencyDivisor!=1) {
-      adjustedAmount = transaction.amount/transaction.currencyDivisor;
-      updateSum(categorySums, transaction.category, adjustedAmount);
-      grandSum = grandSum+adjustedAmount;
-    } else {
-      updateSum(categorySums, transaction.category, transaction.amount);
-      grandSum = grandSum+transaction.amount;
-    }
+    // using adjustedAmount to affect category and grand sum
+    updateSum(categorySums, transaction.category, transaction.adjustedAmount());
+    grandSum = grandSum+transaction.adjustedAmount();
     updateSum(accountSums, transaction.account, transaction.amount);
 
     return transaction;

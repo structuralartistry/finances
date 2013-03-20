@@ -195,18 +195,18 @@ describe('parseTransactions', function () {
       data = '';
       data += '-50 dining cashmx\n'
       data += '-5 groceries cash\n'
-      data += '1000 xfer cashmx\n'
+      data += '10000 xfer cashmx\n'
 
       parseTransactions(data);
 
       // cashmx is divided by 10
-      assert(grandSum, 9000);
+      assert(grandSum, 99000);
       assert(categorySums['dining'], -500);
       assert(categorySums['groceries'], -500);
-      assert(categorySums['xfer'], 10000);
+      assert(categorySums['xfer'], 100000);
 
       // but not for account
-      assert(accountSums['cashmx'], 95000);
+      assert(accountSums['cashmx'], 995000);
     });
 
   });
@@ -349,7 +349,7 @@ describe('parseTransaction', function () {
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, false);
-      assert(parsedTransaction.amount, -1200);
+      assert(parsedTransaction.adjustedAmount(), -1200);
       assert(parsedTransaction.category, 'groc');
       assert(parsedTransaction.account, 'cash');
       assert(parsedTransaction.currencyDivisor, 10);
