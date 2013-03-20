@@ -5,23 +5,24 @@ fixtureTransactionsData1 += '1/11/2012 20 transit chap\n';
 fixtureTransactionsData1 += '1/11/2012 34.52 groc chap\n';
 fixtureTransactionsData1 += '12/10/2011 700 rent cash\n';
 
-//describe('UI tests', function () {
-//  test('processDataInput', function () {
-//    var formattedOutput, parsedTransactions, expectedOutput;
-//    parsedTransactions = parseTransactions(fixtureTransactionsData1);
-//
-//    expectedOutput  = '        DATE |     AMOUNT |   CATEGORY |    ACCOUNT | \n'
-//    expectedOutput += '   1/12/2012 |      12.98 |     dining |       cash | \n'
-//    expectedOutput += '   1/12/2012 |       3.45 |       cafe |       cash | \n'
-//    expectedOutput += '   1/11/2012 |      20.00 |    transit |       chap | \n'
-//    expectedOutput += '   1/11/2012 |      34.52 |       groc |       chap | \n'
-//    expectedOutput += '  12/10/2011 |     700.00 |       rent |       cash | \n'
-//
-//    formattedOutput = formatTransactionsOutput(parsedTransactions);
-//
-//    assert(formattedOutput, expectedOutput);
-//  });
-//
+// reconciled date amount cat acc currdiv notes
+describe('UI tests', function () {
+  test('processDataInput', function () {
+    var formattedOutput, parsedTransactions, expectedOutput;
+    parsedTransactions = parseTransactions(fixtureTransactionsData1);
+
+    expectedOutput  = ' x |         DATE |     AMOUNT |   CATEGORY |    ACCOUNT |  CURR | NOTES\n'
+    expectedOutput += '   |    1/12/2012 |      12.98 |     dining |       cash |     1 |  \n'
+    expectedOutput += '   |    1/12/2012 |       3.45 |       cafe |       cash |     1 |  \n'
+    expectedOutput += '   |    1/11/2012 |      20.00 |    transit |       chap |     1 |  \n'
+    expectedOutput += '   |    1/11/2012 |      34.52 |       groc |       chap |     1 |  \n'
+    expectedOutput += '   |   12/10/2011 |     700.00 |       rent |       cash |     1 |  \n'
+
+    formattedOutput = formatTransactionsOutput(parsedTransactions);
+
+    assert(formattedOutput, expectedOutput);
+  });
+
 //  test('formatTransactionsOutput', function () {
 //    var formattedOutput, parsedTransactions, expectedOutput;
 //    parsedTransactions = parseTransactions(fixtureTransactionsData1);
@@ -37,61 +38,17 @@ fixtureTransactionsData1 += '12/10/2011 700 rent cash\n';
 //
 //    assert(formattedOutput, expectedOutput);
 //  });
-//
-//  test('formatInDecimal', function () {
-//    assert(formatInDecimal('1000'), '10.00');
-//    assert(formatInDecimal('2345'), '23.45');
-//    assert(formatInDecimal('92345'), '923.45');
-//    assert(formatInDecimal('-1197'), '-11.97');
-//    assert(formatInDecimal(''), '0.00');
-//    assert(formatInDecimal('0'), '0.00');
-////    assert(formatInDecimal('-0'), '0.00');
-//  });
-//});
 
-//describe('whatIsThisRow', function () {
-//
-//  test('date only', function () {
-//    assert(whatIsThisRow('1/1/2013'), 'date only');
-//  });
-//
-//  test('transaction row with no date', function () {
-//    assert(whatIsThisRow('-200 xfer chap'), 'transaction row with no date');
-//
-//  });
-//
-//  test('transaction row with date', function () {
-//    assert(whatIsThisRow('6/2/2001 -200 xfer chap'), 'transaction row with date');
-//  });
-//
-//  test('empty row', function () {
-//    assert(whatIsThisRow(''), 'empty row');
-//  });
-//
-//  test('not detected', function () {
-//    assert(whatIsThisRow('blah'), 'dont know');
-//    assert(errorOutput[0], 'Unprocessed row: blah');
-//  });
-//
-//});
-
-//describe('normalizeTransactionRow', function () {
-//
-//  test('row with date', function () {
-//    assert(normalizeTransactionRow('6/2/2001 -200 xfer chap'), '6/2/2001 -200 xfer chap');
-//  });
-//
-//  test('row with no date', function () {
-//    currentDate = new MyDate('6/2/1972');
-//    assert(normalizeTransactionRow('-200 xfer chap'), '6/2/1972 -200 xfer chap');
-//  });
-//
-//  test('with padding', function () {
-//    assert(normalizeTransactionRow('  1/7/2012 -16.00 din cash  '), '1/7/2012 -16.00 din cash');
-//  });
-//
-//
-//});
+  test('formatInDecimal', function () {
+    assert(formatInDecimal('1000'), '10.00');
+    assert(formatInDecimal('2345'), '23.45');
+    assert(formatInDecimal('92345'), '923.45');
+    assert(formatInDecimal('-1197'), '-11.97');
+    assert(formatInDecimal(''), '0.00');
+    assert(formatInDecimal('0'), '0.00');
+    assert(formatInDecimal('-0'), '0.00');
+  });
+});
 
 describe('hasDate', function () {
   test('no date', function () {

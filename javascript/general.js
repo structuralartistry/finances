@@ -134,15 +134,21 @@ function formatSumsOutput () {
 function formatTransactionsOutput (parsedTransactions) {
   var formattedOutput;
   formattedOutput = '';
+  formattedOutput += $.strPad('x', 2, ' ') + ' | ';
   formattedOutput += $.strPad('DATE', 12, ' ') + ' | ';
   formattedOutput += $.strPad('AMOUNT', 10, ' ') + ' | ';
   formattedOutput += $.strPad('CATEGORY', 10, ' ') + ' | ';
-  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' | \n';
+  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' | ';
+  formattedOutput += $.strPad('CURR', 5, ' ') + ' | ';
+  formattedOutput += $.strPad('NOTES', 1, ' ') + '\n';
   parsedTransactions.forEach( function(parsedTransaction) {
-    formattedOutput += $.strPad(formatDateString(parsedTransaction[0]), 12, ' ') + ' | ';
-    formattedOutput += $.strPad(formatInDecimal(parsedTransaction[1].toString()), 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction[2].toString(), 10, ' ') + ' | ';
-    formattedOutput += $.strPad(parsedTransaction[3].toString(), 10, ' ') + ' | \n';
+    formattedOutput += $.strPad( (parsedTransaction.reconciled ? 'x' : '') , 2, ' ') + ' | ';
+    formattedOutput += $.strPad(formatDateString(parsedTransaction.date), 12, ' ') + ' | ';
+    formattedOutput += $.strPad(formatInDecimal(parsedTransaction.amount.toString()), 10, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction.category, 10, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction.account, 10, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction.currencyDivisor, 5, ' ') + ' | ';
+    formattedOutput += $.strPad(parsedTransaction.notes, 1, ' ') + '\n';
   } );
   return formattedOutput;
 }
