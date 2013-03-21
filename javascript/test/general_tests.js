@@ -260,16 +260,16 @@ describe('parseTransaction', function () {
       assert(parsedTransaction.account, 'cash');
     });
 
-    test('with NOT reconciled', function () {
+    test('with not reconciled', function () {
       var parsedTransaction;
 
-      parsedTransaction = parseTransaction('-19.87 groc cash');
+      parsedTransaction = parseTransaction('-19.87 groc chap');
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, false);
       assert(parsedTransaction.amount, -1987);
       assert(parsedTransaction.category, 'groc');
-      assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.account, 'chap');
     });
 
     test('with reconciled and date', function () {
@@ -287,28 +287,54 @@ describe('parseTransaction', function () {
     test('with currency divisor', function () {
       var parsedTransaction;
 
-      parsedTransaction = parseTransaction('-120.00 groc cash /10');
+      parsedTransaction = parseTransaction('-120.00 groc chap /10');
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, false);
       assert(parsedTransaction.adjustedAmount(), -1200);
       assert(parsedTransaction.category, 'groc');
-      assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.account, 'chap');
       assert(parsedTransaction.currencyDivisor, 10);
     });
 
     test('with notes', function () {
       var parsedTransaction;
 
-      parsedTransaction = parseTransaction('-120.00 groc cash my notes are here');
+      parsedTransaction = parseTransaction('-120.00 groc chap my notes are here');
 
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, false);
       assert(parsedTransaction.amount, -12000);
       assert(parsedTransaction.category, 'groc');
-      assert(parsedTransaction.account, 'cash');
+      assert(parsedTransaction.account, 'chap');
       assert(parsedTransaction.currencyDivisor, 1);
       assert(parsedTransaction.notes, 'my notes are here');
+    });
+
+    test('failing to get account with reconciled (bug)', function () {
+      var parsedTransaction;
+
+//      parsedTransaction = parseTransaction('-9132.75 @xfer chap');
+//
+//      assert(parsedTransaction.date, getCurrentDate());
+//      assert(parsedTransaction.reconciled, false);
+//      assert(parsedTransaction.amount, -913275);
+//      assert(parsedTransaction.category, '@xfer');
+//      assert(parsedTransaction.account, 'chap');
+//      assert(parsedTransaction.currencyDivisor, 1);
+//      assert(parsedTransaction.notes, '');
+
+      parsedTransaction = parseTransaction('x -9132.75 @xfer chap');
+
+console.log(parsedTransaction);
+      assert(parsedTransaction.date, getCurrentDate());
+      assert(parsedTransaction.reconciled, true);
+      assert(parsedTransaction.amount, -913275);
+      assert(parsedTransaction.category, '@xfer');
+      assert(parsedTransaction.account, 'chap');
+      assert(parsedTransaction.currencyDivisor, 1);
+      assert(parsedTransaction.notes, '');
+
     });
 
   });

@@ -36,7 +36,8 @@ function initializeValues () {
 }
 
 $.strPad = function(i,l,s) {
-  var o = i.toString();
+  var o;
+  o = i.toString();
   if (!s) { s = '0'; }
   while (o.length < l) {
     o = s + o;
@@ -194,6 +195,7 @@ function parseTransaction (rowData) {
     // reconciled processing
     if(splitData[0]=='x') {
       transaction.reconciled = true;
+console.log(splitData);
       splitData = removeFromArray(splitData[0], splitData);
     }
     // marking all transactions reconciled that are not 'chap' for now
@@ -207,6 +209,7 @@ function parseTransaction (rowData) {
     } else {
       transaction.date = new MyDate(foundDate[0]);
       setCurrentDate(transaction.date);
+console.log(splitData);
       splitData = removeFromArray(foundDate, splitData);
     }
 
@@ -220,7 +223,6 @@ function parseTransaction (rowData) {
       });
       if(foundCurrencyDivisor!=undefined) {
         transaction.currencyDivisor = parseInt(foundCurrencyDivisor.replace('/', ''));
-        //transaction.amount = (transaction.amount/transaction.currencyDivisor);
         splitData = removeFromArray(foundCurrencyDivisor, splitData);
       }
       splitData = removeFromArray(splitData[0], splitData);
@@ -232,6 +234,7 @@ function parseTransaction (rowData) {
 
     // account
     transaction.account = splitData[0];
+
     splitData = removeFromArray(transaction.account, splitData);
 
     // notes are any items in array remaining
