@@ -195,7 +195,6 @@ function parseTransaction (rowData) {
     // reconciled processing
     if(splitData[0]=='x') {
       transaction.reconciled = true;
-console.log(splitData);
       splitData = removeFromArray(splitData[0], splitData);
     }
     // marking all transactions reconciled that are not 'chap' for now
@@ -209,7 +208,6 @@ console.log(splitData);
     } else {
       transaction.date = new MyDate(foundDate[0]);
       setCurrentDate(transaction.date);
-console.log(splitData);
       splitData = removeFromArray(foundDate, splitData);
     }
 
@@ -263,7 +261,7 @@ function preProcessTransactionRow(rowData) {
 function removeFromArray(toRemove, arr) {
   var returnArr = [];
   arr.forEach( function(e) {
-    if(!e.match(toRemove)) returnArr.push(e);
+    if(!e.match('^' + toRemove + '$')) returnArr.push(e);
   });
   return returnArr;
 }

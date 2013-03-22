@@ -190,6 +190,12 @@ describe('parseTransaction', function () {
       assert(errorOutput[0], 'Unprocessed row: ' + unprocessableRow);
     });
 
+    describe('must have amount, category and account', function () {
+test('', function () {
+  assert(1,2);
+});
+    });
+
     test('minimum row with amount, cagetory and account', function () {
       var parsedTransaction;
 
@@ -314,19 +320,8 @@ describe('parseTransaction', function () {
     test('failing to get account with reconciled (bug)', function () {
       var parsedTransaction;
 
-//      parsedTransaction = parseTransaction('-9132.75 @xfer chap');
-//
-//      assert(parsedTransaction.date, getCurrentDate());
-//      assert(parsedTransaction.reconciled, false);
-//      assert(parsedTransaction.amount, -913275);
-//      assert(parsedTransaction.category, '@xfer');
-//      assert(parsedTransaction.account, 'chap');
-//      assert(parsedTransaction.currencyDivisor, 1);
-//      assert(parsedTransaction.notes, '');
-
       parsedTransaction = parseTransaction('x -9132.75 @xfer chap');
 
-console.log(parsedTransaction);
       assert(parsedTransaction.date, getCurrentDate());
       assert(parsedTransaction.reconciled, true);
       assert(parsedTransaction.amount, -913275);
@@ -337,6 +332,20 @@ console.log(parsedTransaction);
 
     });
 
+  });
+
+});
+
+describe('removeFromArray', function () {
+
+  test('simple removal', function () {
+    arr = ['a', 'b', 'c'];
+    assert(removeFromArray('b', arr).toString(), ['a', 'c'].toString());
+  });
+
+  test('must fully match element', function () {
+    arr = ['x', '@xfer', 'chap'];
+    assert(removeFromArray('x', arr).toString(), ['@xfer', 'chap'].toString());
   });
 
 });
