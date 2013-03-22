@@ -191,9 +191,34 @@ describe('parseTransaction', function () {
     });
 
     describe('must have amount, category and account', function () {
-test('', function () {
-  assert(1,2);
-});
+
+      test('no amount', function () {
+        initializeValues();
+        row = 'groc chap';
+        assert(parseTransaction(row), null);
+
+        assert(errorOutput.length, 1);
+        assert(errorOutput[0], 'Unprocessed row: ' + row);
+      });
+
+      test('no category', function () {
+        initializeValues();
+        row = '-12';
+        assert(parseTransaction(row), null);
+
+        assert(errorOutput.length, 1);
+        assert(errorOutput[0], 'Unprocessed row: ' + row);
+      });
+
+      test('no account', function () {
+        initializeValues();
+        row = '-12 groc';
+        assert(parseTransaction(row), null);
+
+        assert(errorOutput.length, 1);
+        assert(errorOutput[0], 'Unprocessed row: ' + row);
+      });
+
     });
 
     test('minimum row with amount, cagetory and account', function () {
