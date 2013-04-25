@@ -27,6 +27,7 @@
 //strategy: comment out to simplest (parseTransactionRow), get working and build up from there...
 
 var currentDate, errorOutput, categorySums, accountSums, grandSum;
+var formattingDelimiter = '|';
 
 function initializeValues () {
   errorOutput=[];
@@ -109,11 +110,11 @@ function formatDateString (date) {
 function formatSumsOutput () {
   var formattedOutput='', categoryGrandSum=0, categorySum=0, percentOfTotal;
   formattedOutput += 'GRAND SUM' + '\n';
-  formattedOutput += $.strPad(' ', 20, ' ') + $.strPad(formatInDecimal(grandSum.toString()), 15, ' ') + '\n';
+  formattedOutput += $.strPad(' ', 20, ' ') + formattingDelimiter + $.strPad(formatInDecimal(grandSum.toString()), 15, ' ') + '\n';
 
   formattedOutput += 'ACCOUNTS' + '\n';
   Object.keys(accountSums).sort().forEach( function(key) {
-    formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(accountSums[key].toString()), 15, ' ') + '\n';
+    formattedOutput += $.strPad(key, 20, ' ') + formattingDelimiter +  $.strPad(formatInDecimal(accountSums[key].toString()), 15, ' ') + '\n';
   });
 
   categoryGrandSum = getGrandSum(categorySums)
@@ -122,12 +123,12 @@ function formatSumsOutput () {
     categorySum = categorySums[key];
     if(key[0]!='@') {
       percentOfTotal = ((categorySum/categoryGrandSum)*100).toString().match(/\d+/)[0] + '%';
-      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(percentOfTotal, 8, ' ') + '\n';
+      formattedOutput += $.strPad(key, 20, ' ') + formattingDelimiter +  $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + formattingDelimiter +  $.strPad(percentOfTotal, 8, ' ') + '\n';
     } else {
-      formattedOutput += $.strPad(key, 20, ' ') + $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + $.strPad(' ', 8, ' ') + '\n';
+      formattedOutput += $.strPad(key, 20, ' ') + formattingDelimiter +  $.strPad(formatInDecimal(categorySum.toString()), 15, ' ') + formattingDelimiter +  $.strPad(' ', 8, ' ') + '\n';
     }
   });
-  formattedOutput += $.strPad('TOTAL', 20, ' ') + $.strPad(formatInDecimal(categoryGrandSum.toString()), 15, ' ') + '\n';
+  formattedOutput += $.strPad('TOTAL', 20, ' ') + formattingDelimiter +  $.strPad(formatInDecimal(categoryGrandSum.toString()), 15, ' ') + formattingDelimiter + '\n';
 
   return formattedOutput;
 }
@@ -135,20 +136,20 @@ function formatSumsOutput () {
 function formatTransactionsOutput (parsedTransactions) {
   var formattedOutput;
   formattedOutput = '';
-  formattedOutput += $.strPad('x', 2, ' ') + ' , ';
-  formattedOutput += $.strPad('DATE', 12, ' ') + ' , ';
-  formattedOutput += $.strPad('AMOUNT', 10, ' ') + ' , ';
-  formattedOutput += $.strPad('CATEGORY', 10, ' ') + ' , ';
-  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + ' , ';
-  formattedOutput += $.strPad('CURR', 5, ' ') + ' , ';
+  formattedOutput += $.strPad('x', 2, ' ') + formattingDelimiter;
+  formattedOutput += $.strPad('DATE', 12, ' ') + formattingDelimiter;
+  formattedOutput += $.strPad('AMOUNT', 10, ' ') + formattingDelimiter;
+  formattedOutput += $.strPad('CATEGORY', 10, ' ') + formattingDelimiter;
+  formattedOutput += $.strPad('ACCOUNT', 10, ' ') + formattingDelimiter;
+  formattedOutput += $.strPad('CURR', 5, ' ') + formattingDelimiter;
   formattedOutput += $.strPad('NOTES', 1, ' ') + '\n';
   parsedTransactions.forEach( function(parsedTransaction) {
-    formattedOutput += $.strPad( (parsedTransaction.reconciled ? 'x' : '') , 2, ' ') + ' , ';
-    formattedOutput += $.strPad(formatDateString(parsedTransaction.date), 12, ' ') + ' , ';
-    formattedOutput += $.strPad(formatInDecimal(parsedTransaction.amount.toString()), 10, ' ') + ' , ';
-    formattedOutput += $.strPad(parsedTransaction.category, 10, ' ') + ' , ';
-    formattedOutput += $.strPad(parsedTransaction.account, 10, ' ') + ' , ';
-    formattedOutput += $.strPad(parsedTransaction.currencyDivisor, 5, ' ') + ' , ';
+    formattedOutput += $.strPad( (parsedTransaction.reconciled ? 'x' : '') , 2, ' ') + formattingDelimiter;
+    formattedOutput += $.strPad(formatDateString(parsedTransaction.date), 12, ' ') + formattingDelimiter;
+    formattedOutput += $.strPad(formatInDecimal(parsedTransaction.amount.toString()), 10, ' ') + formattingDelimiter;
+    formattedOutput += $.strPad(parsedTransaction.category, 10, ' ') + formattingDelimiter;
+    formattedOutput += $.strPad(parsedTransaction.account, 10, ' ') + formattingDelimiter;
+    formattedOutput += $.strPad(parsedTransaction.currencyDivisor, 5, ' ') + formattingDelimiter;
     formattedOutput += $.strPad(parsedTransaction.notes, 1, ' ') + '\n';
   } );
   return formattedOutput;
