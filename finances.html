@@ -73,3 +73,9 @@
 </body>
 
 </html>
+
+<script>
+  $(document).ready(function() {
+    $.get('spending_transactions.txt', function(data) { $('#dataInput').val(data); } );
+  });
+</script>

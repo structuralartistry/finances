@@ -1,0 +1,680 @@
+CREDIT,04/24/2013,"US TREASURY 312    TAX REF                  PPD ID: 3111036170",4617.25
+DEBIT,04/24/2013,"ATM WITHDRAWAL                       009677  04/243921 30TH",-200.00
+DEBIT,04/23/2013,"HOSTGATOR.COM PS://SIGNUP.H TX               04/23",-9.95
+DEBIT,04/23/2013,"RALPHS 1020 UNIVERSITY SAN DIEGO CA  426803  04/23",-4.22
+CREDIT,04/22/2013,"NY STATE         TAX REFUND 034026188       CCD ID: 1741270001",425.00
+DEBIT,04/22/2013,"COALINGA MART COALINGA CA                    04/18",-43.67
+DEBIT,04/22/2013,"ENTERPRISE RENT-A-CAR SAN DIEGO CA           04/19",-129.56
+DEBIT,04/22/2013,"APL*APPLE ITUNES STOR 866-712-7753 CA        04/20",-4.56
+DEBIT,04/22/2013,"CODE 42 SOFTWARE INC 650-6222200 MN          04/20",-5.99
+DEBIT,04/22/2013,"IRS              USATAXPYMT 270351231283815 WEB ID: 3387702000",-12035.92
+CREDIT,04/19/2013,"Online Transfer from SAV ...9864 transaction#: 3227990878",12035.92
+DEBIT,04/19/2013,"PIONEER FOOD MART PASO ROBLES CA             04/17",-43.13
+DEBIT,04/19/2013,"Online Payment 3227965272 To Novato Institute 04/19",-1500.00
+DEBIT,04/19/2013,"ARCO PAYPOINT 83089 SAN DIEGO CA     056931  04/19",-30.57
+DEBIT,04/18/2013,"BLACK DIAMOND S/162 UN PALO ALTO CA  158495  04/18",-104.40
+DEBIT,04/18/2013,"WHOLE FOODS MARK 774 E Palo Alto CA  201935  04/18",-9.75
+DEBIT,04/16/2013,"EXPEDIA*Sales Final 800-367-3476 NV          04/16",-59.79
+DEBIT,04/16/2013,"EXPEDIA*Sales Final 800-367-3476 NV          04/16",-50.78
+DEBIT,04/16/2013,"ATM WITHDRAWAL                       001497  04/153800 5TH",-800.00
+DEBIT,04/16/2013,"ATM WITHDRAWAL                       001498  04/153800 5TH",-80.00
+DEBIT,04/16/2013,"GOLDEN STATE GASOLINE SAN DIEGO CA           04/15",-18.69
+DEBIT,04/16/2013,"1705 GARNET ST. SAN DIEGO CA         974355  04/15",-14.64
+DEBIT,04/16/2013,"#06335 ALBERTSONS CALABASA CA        564349  04/16",-19.24
+DEBIT,04/15/2013,"COUNTER CHECK",-2.00
+DEBIT,04/11/2013,"AMTRAK .COM 09981040491 WASHINGTON DC        04/09",121.00
+DEBIT,04/11/2013,"AIRBNB INC 415-800-5959 CA                   04/10",55.00
+DEBIT,04/11/2013,"AMTRAK .COM 09981040491 WASHINGTON DC        04/09",-121.00
+DEBIT,04/10/2013,"SUPERSHUTTLE EXECUCARSA 8002583826 CA        04/09",23.60
+DEBIT,04/10/2013,"SPROUTS FARMERS MAR SAN DIEGO CA             04/08",-8.66
+DEBIT,04/10/2013,"SUPERSHUTTLE EXECUCAR 800-258-3826 CA        04/09",-23.60
+DEBIT,04/10/2013,"AIRBNB INC 415-800-5959 CA                   04/09",-162.00
+DEBIT,04/09/2013,"Amazon Services-Kindl 866-216-1072 WA        04/08",-2.99
+DEBIT,04/09/2013,"INTUIT *TURBOTAX 800-446-8848 CA             04/09",-79.48
+DEBIT,04/09/2013,"MAILBOX FORWARDING, I 877-335-6245 MI        04/09",-15.65
+DEBIT,04/09/2013,"HAIR UNLIMITED SAN DIEGO CA                  04/09",-75.58
+DEBIT,04/09/2013,"PANGAEA OUTPOST SAN DIEGO CA         471730  04/09",-51.79
+DEBIT,04/09/2013,"ATM WITHDRAWAL                       008448  04/091000 GARN",-200.00
+CREDIT,04/08/2013,"FEDWIRE CREDIT VIA: NEW RESOURCE BANK/121044369 B/O: CLOUD CITY DEVELOPMENT LLC SAN FRANCISCO, CA 94103 REF: CHASE NYC/CTR/BNF=DAVID N KAHN NEW YORK, NY 100026530/AC-000000008312 RFB=O/B NEW RESOURCE OBI=20130331 IMAD: 0408L1LFBW0C000002 TRN: 4181109098FF",675.00
+DEBIT,04/08/2013,"VIVID TATTOO SAN DIEGO CA                    04/04",-90.00
+DEBIT,04/08/2013,"TU *TRANSUNION 800-493-3292 CA               04/05",-5.00
+DEBIT,04/08/2013,"EQUIFAX CREDIT REPORTS 678-7957055 GA        04/05",-10.00
+DEBIT,04/08/2013,"EXPERIAN SCORECARD 714-3856191 CA            04/05",-10.00
+DEBIT,04/08/2013,"TRADER JOE'S # 021 SAN DIEGO CA      044905  04/08",-55.48
+DEBIT,04/08/2013,"1705 GARNET ST. SAN DIEGO CA         039729  04/08",-37.34
+DEBIT,04/08/2013,"VALERO 3739 SAN DIEGO CA             093441  04/08",-46.93
+DEBIT,04/08/2013,"INCOMING DOMESTIC WIRE FEE",-15.00
+DEBIT,04/05/2013,"TARGET T1410 TARGET T1 SAN DIEGO CA  344967  04/05",-16.19
+DEBIT,04/04/2013,"T-MOBILE.COM*PAYMENT 800-937-8997 WA         04/03",-26.13
+DEBIT,04/04/2013,"Public Storage I RENTAL                     PPD ID: 4953551121",-21.00
+DEBIT,04/03/2013,"AMAZON MKTPLACE PMTS AMZN.COM/BILL WA        04/02",-152.53
+DEBIT,04/02/2013,"AMAZON MKTPLACE PMTS AMZN.COM/BILL WA        04/02",83.97
+DEBIT,04/02/2013,"TOWN SPORTS INTERNATI 877-258-2311 PA        04/01",-15.00
+DEBIT,04/01/2013,"GOOGLE *androidSlide GOOGLE.COM/CH CA        03/31",-2.99
+DEBIT,04/01/2013,"APL*APPLE ITUNES STOR 866-712-7753 CA        03/31",-3.96
+DEBIT,04/01/2013,"GOOGLE *interactivea GOOGLE.COM/CH CA        04/01",-1.99
+DEBIT,03/28/2013,"Amazon Video On Deman 866-216-1072 WA        03/28",-3.99
+DEBIT,03/26/2013,"Amazon.com AMZN.COM/BILL WA                  03/25",-21.03
+DEBIT,03/26/2013,"AMAZON MKTPLACE PMTS AMZN.COM/BILL WA        03/25",-91.23
+DEBIT,03/26/2013,"SOMATICS RESOURCES 415-892-0617 CA           03/25",-95.32
+DEBIT,03/25/2013,"SPROUTS FARMERS MAR SAN DIEGO CA             03/22",-7.84
+DEBIT,03/25/2013,"HOSTGATOR.COM PS://SIGNUP.H TX               03/23",-9.95
+DEBIT,03/25/2013,"TURQUOISE COFFEE SAN DIEGO CA                03/23",-3.00
+DEBIT,03/25/2013,"TRADER JOE'S # 021 SAN DIEGO CA      868941  03/23",-26.31
+DEBIT,03/25/2013,"HOME IMPROVER ACE HDWE SAN DIEGO CA          03/23",-10.89
+DEBIT,03/25/2013,"PAYPAL *REMEMBERBOO 402-935-7733 CA          03/23",-7.42
+DEBIT,03/25/2013,"NON-CHASE ATM WITHDRAW               301897  03/244340 MISS",-402.95
+DEBIT,03/25/2013,"NON-CHASE ATM FEE-WITH",-2.00
+DEBIT,03/22/2013,"SPROUTS FARMERS MAR SAN DIEGO CA             03/20",-14.32
+DEBIT,03/22/2013,"TRADER JOE'S #021  QPS SAN DIEGO CA          03/21",-15.13
+DEBIT,03/20/2013,"TRADER JOE'S # 021 SAN DIEGO CA      477221  03/20",-23.98
+DEBIT,03/14/2013,"Amazon Services-Kindl 866-321-8851 WA        03/14",-9.99
+DEBIT,03/12/2013,"INTERJET    0000020720 866-5199837 TX        03/09",-152.49
+DEBIT,03/12/2013,"Online Payment 3160741525 To Tamsin Stewart 03/12",-800.00
+DEBIT,03/11/2013,"USAIRWAYS   03772123366 ATLANTA GA           03/08",-230.30
+DEBIT,03/11/2013,"MAILBOX FORWARDING, I 877-335-6245 MI        03/09",-14.95
+DEBIT,03/11/2013,"GOOGLE *Chordbot GOOGLE.COM/CH CA            03/10",-5.00
+DEBIT,03/11/2013,"NON-CHASE ATM WITHDRAW               051516  03/10GREGORIO  MX Nu Peso 8000.00 X 0.07926018 (EXCHG RTE) + 19.09 (EXCHG RTE AD",-655.47
+DEBIT,03/11/2013,"NON-CHASE ATM FEE-WITH",-5.00
+DEBIT,03/05/2013,"Online Transfer to  SAV ...9864 transaction#: 3149534070 03/05",-9132.75
+DEBIT,03/05/2013,"Online Transfer to  SAV ...9864 transaction#: 3149545342 03/05",-2889.00
+DEBIT,03/05/2013,"Online Transfer 3149547650 to Zions Savings ######2978 transaction #: 3149547650 03/05",-1444.50
+DEBIT,03/05/2013,"Public Storage I RENTAL                     PPD ID: 4953551121",-21.00
+CREDIT,03/04/2013,"FEDWIRE CREDIT VIA: NEW RESOURCE BANK/121044369 B/O: CLOUD CITY DEVELOPMENT LLC SAN FRANCISCO, CA 94103 REF: CHASE NYC/CTR/BNF=DAVID N KAHN NEW YORK, NY 100026530/AC-000000008312 RFB=O/B NEW RESOURCE OBI=20130228 IMAD: 0304L1LFBW0C000006 TRN: 3855209063FF",15143.14
+DEBIT,03/04/2013,"INCOMING DOMESTIC WIRE FEE",-15.00
+
+
+
+
+
+
+4/24/2013
+-200 @xfer chap
+200 @xfer cash
+-2.25 cafe cash
+-8 clothes cash
+
+4/20/2013
+-1500 bus_edu chap hanna somatics training deposit
+4/9/2013
+-121 bustrav chap to nyc
+
+4/8/2013
+-2.99 books chap
+-0 gas chap
+-5 groc chap
+-0 groc chap
+-79 taxes chap
+
+4/5/2013
+-3.50 cafe cash
+
+4/4/2013
+-5 groc cash
+-35 groc cash
+-20 beauty cash
+-90 beauty chap piercing
+-1.95 cafe cash
+
+4/2/2013
+-26.13 util_cell chap
+-152.53 bus_equip chap scanner camera
+-65 beauty cash
+
+
+4/1/2013
+-24.15 beauty cash
+-37 beauty cash
+-76 clothes cash
+-18 clothes cash
+
+
+3/31/2013
+-1.99 bus_soft chap lapseit
+-15 groc cash
+
+
+
+3/30/2013
+-13.81 perscare cash
+-2.99 bus_soft chap cam-android
+-3.99 groc cash
+-2.25 cafe cash
+
+3/28/2013
+-15 groc cash
+-1.95 cafe cash
+
+3/27/2013
+-3.99 music chap
+-3.99 ent chap sugarman
+
+3/25/2013
+-17.91 din cash
+-1.95 cafe cash
+
+3/24/2013
+-112.26 bus_equip chap scanner, books, etc
+-94.20 bus_books chap somatics order
+-8.98 groc cash
+-2.96 groc cash
+-400 @xfer chap
+400 @xfer cash
+-2.95 svcfee chap
+
+
+
+3/23/2013
+x -26.31 groc chap
+x -10.89 fit chap
+x -3 cafe chap
+x -7.42 bus_books chap
+
+3/22/2013
+x -7.84 groc chap
+666.18 @bal chap
+-3468.96 @xfer chap
+3468.96 @xfer zsav
+-2 svcfee cash lib card
+-45.10 acctadj cash
+x -9.95 bus_svc chap hosting
+
+3/21/2013
+-5.25 trans cash
+-800 acctadj cashmx
+x -15.13 groc chap
+
+3/20/2013
+-250 trav_trans cashmx
+-50 din cashmx
+-200 trav_trans cashmx
+-10 groc cashmx
+x -14.32 groc chap
+x -23.98 groc chap
+
+3/19/2013
+-100 groc cashmx
+-35 perscare cashmx
+-25 transit cashmx
+
+3/18/2013
+-6 trans cashmx
+-20 din cashmx
+-500 growth cashmx
+-15 groc cashmx
+
+3/17/2013
+-8 trans cashmx
+-134 groc cashmx
+-42 din cashmx
+
+3/16/2013
+-100 din cashmx
+-50 groc cashmx
+-65 groc cashmx
+-130 groc cashmx
+-70 laund cashmx
+-40 groc cashmx
+
+3/15/2013
+-25 trav_trans cashmx
+-56 trav_trans cashmx
+-321 trav_trans cashmx
+-15 groc cashmx
+-150 trav_trans cashmx
+-2000 trav_hot cashmx
+-210 groc cashmx
+
+
+3/14/2013
+-30 groc cashmx
+-40 groc cashmx
+-12 groc cashmx
+x -9.99 books chap
+-56 trav_trans cashmx
+-200 trav_hot cashmx
+
+3/13/2013
+-25 trav_trans cashmx
+-15 trav_hot cashmx
+-10 groc cashmx
+-174 trav_trans cashmx
+-516 trav_trans cashmx
+-30 trav_trans cashmx
+-330 trav_hot cashmx
+
+3/12/2013
+-5 groc cashmx
+-35 groc cashmx
+-135 groc cashmx
+-180 trav_hot cashmx
+
+3/11/2013
+x -800 bus_edu chap neurosoma
+-180 trav_hot cashmx
+-92 groc cashmx
+x -14.95 util_mail chap
+
+3/10/2013
+-35 taxi cashmx
+-15 groc cashmx
+-326 trav_trans cashmx
+-542 trav_trans cashmx
+-200 trav_hot cashmx
+-63 groc cashmx
+x -655.47 @xfer chap
+x -5 svcfee chap
+8000 @xfer cashmx
+
+3/9/2013
+-326 trav_trans cashmx
+-40 din cashmx
+-30 groc cashmx
+-125 growth cashmx
+-56 laund cashmx
+x -5 music chap
+
+3/8/2013
+-20 homesup cashmx
+-40 groc cashmx
+-10 groc cashmx
+x -152.49 bus_trav_trans chap airfare to san diego
+x -230.30 bus_trav_trans chap neurosoma training
+
+3/7/2013
+-110 din cashmx
+-30 groc cashmx
+-20 groc cashmx
+-170 trav_hot cashmx
+
+3/6/2013
+-1150 acctadj cashmx
+-170 trav_hot cashmx
+
+3/5/2013
+x -21 stor chap
+x -9132.75 @xfer chap
+x 9132.75 @xfer chas_tax
+x -1444.50 @xfer chap
+1444.50 @xfer chas_giv
+x -1444.50 @xfer chap
+1114.56 @xfer chas_fs
+x -1444.50 @xfer chap
+1444.50 @xfer zsav
+-170 trav_hot cashmx
+
+3/4/2013
+x -15 bus_svc chap
+x 14444.14 @income_1099 chap
+x 699 @reimb chap
+-170 trav_hot cashmx
+
+3/3/2013
+-170 trav_hot cashmx
+
+3/2/2013
+-170 trav_hot cashmx
+
+3/1/2013
+x -15 fit chap
+x -6.45 music chap
+-200 trav_hot cashmx
+-20 trans cashmx
+53.35 @bal cash
+4220.00 @bal cashmx
+13780.96 @bal chap
+2062.25 @bal chas_fs
+3062.25 @bal chas_giv
+2680.43 @bal chas_tax
+29982.57 @bal zsav
+
+2/28/2013
+-4538 acctadj cashmx
+-20 trans cashmx
+-200 trav_hot cashmx
+
+2/27/2013
+x -68.60 util_cell chap
+-200 trav cashmx
+-50 groc cashmx
+-5 cafe cashmx
+-40 cafe cashmx
+-50 trans cashmx
+
+2/26/2013
+-450 trav cashmx
+-200 trav cashmx
+-50 trav cashmx
+-120 trav cashmx
+-100 groc cashmx
+
+
+2/25/2013
+-350 trav cashmx
+-100 util_cell cashmx
+-100 groc cashmx
+-30 groc cashmx
+x -9.95 bus_svc chap hosting
+
+2/24/2013
+-350 trav cashmx
+-128 trav cashmx
+-100 groc cashmx
+
+
+2/23/2013
+-100 groc cashmx
+-50 cafe cashmx
+-300 trav cashmx
+
+2/22/2013
+-100 groc cashmx
+-50 cafe cashmx
+-300 trav cashmx
+
+2/21/2013
+-50 groc cashmx
+-50 cafe cashmx
+x -67.25 gift chap
+-300 trav cashmx
+x -812.85 @xfer chap
+x -5 svcfee chap
+10000 @xfer cashmx
+
+2/20/2013
+-1.00 groc cash
+-180 trans cashmx
+-50 cafe cashmx
+-330 trav cashmx
+x -7 bus_trav_trans chap
+x -12 bus_trav_trans chap
+
+2/19/2013
+x -50 gift chap
+x -17.21 groc chap
+x -2.28 music chap
+x -36.74 bus_equip chap
+x -20 bus_trav_trans chap
+x -5 bus_trav_trans chap
+x -5 bus_trav_trans chap
+x -510 bus_trav_trans chap
+x -57.07 bus_edu chap
+
+2/16/2013
+-3 cafe cash
+-5 cafe cash
+-4 din cash
+
+2/15/2013
+-10 din cash
+-15 din cash
+
+2/14/2013
+x -200 @xfer chap
+200 @xfer cash
+-115 grow cash
+-15 din cash
+
+2/13/2013
+x -12.49 groc chap
+x -66.34 groc chap
+
+2/12/2013
+-36 trav cash
+-65 groc cashmx
+x -83.69 @xfer chap
+1000 @xfer cashmx
+-90 trav cashmx
+-50 cafe cashmx
+-60 trav cashmx
+
+2/11/2013
+-100 groc cashmx
+-50 cafe cashmx
+x -23.40 util_mail chap
+
+2/10/2013
+-100 groc cashmx
+-50 cafe cashmx
+-50 cafe cashmx
+
+2/9/2013
+-40 groc cashmx
+-50 cafe cashmx
+-400 trav cashmx
+
+2/8/2013
+-100 groc cashmx
+
+2/7/2013
+-100 groc cashmx
+x -347 bus_trav_hot chap
+x -698.14 @reimb chap
+
+2/6/2013
+-55 groc cashmx
+-40 cafe cashmx
+
+2/5/2013
+-50 groc cashmx
+-10 groc cashmx
+-15 groc cashmx
+-40 cafe cashmx
+x -21 stor chap
+
+2/4/2013
+-200 groc cashmx
+-40 cafe cashmx
+-150 groc cashmx
+x 13230.00 @income_1099 chap
+x -15 bus_svc chap
+x -15 fit chap
+
+2/3/2013
+-150 groc cashmx
+-60 groc cashmx
+-30 cafe cash
+
+2/2/2013
+-200 cloth cashmx
+-300 groc cashmx
+-380 trav cashmx
+-50 trav cashmx
+-418 trav cashmx
+
+2/1/2013
+-50 laund cashmx
+-50 groc cashmx
+-4 groc cashmx
+
+87.35 @bal cash
+5828.00 @bal cashmx
+3718.97 @bal chap
+2062.25 @bal chas_fs
+3062.25 @bal chas_giv
+2680.43 @bal chas_tax
+29982.57 @bal zsav
+
+1/31/2013
+-32 cafe cashmx
+x -78.88 util_cell chap
+x -293.02 trav chap
+
+1/30/2013
+-30 cafe cashmx
+-250 groc cashmx
+-16 trans cashmx
+-30 groc cashmx
+
+1/29/2013
+-70 groc cashmx
+-50 cafe cashmx
+-16 trans cashmx
+
+1/28/2013
+x -1.29 music chap
+-2508 trav cashmx
+-120 groc cashmx
+-40 cafe cashmx
+
+1/27/2013
+-40 cafe cashmx
+
+1/26/2013
+-120 groc cashmx
+-30 cafe cashmx
+
+1/25/2012
+x -819.39 @xfer chap
+x -5 svcfee chap
+10000 @xfer cashmx
+-400 homeex cashmx
+-400 groc cashmx
+-20 groc cashmx
+
+1/24/2013
+x -10 laund chap
+-7 groc cash
+-10 homeex cash
+-5 trav cash
+-7 trav cash
+-42 trav cash
+x -4.95 bus_svc chap gogo
+x -7 bus_svc chap github
+x 465 @refund chap rental deposits
+
+1/23/2013
+x 1000 @xfer chap
+x -1000 @xfer chas_fs
+x -303.75 bus_equip chap
+x -207 cloth chap
+x -9.95 bus_svc chap hosting
+x -22.66 homeex chap
+x -88.97 homeex chap
+x -22.72 homeex chap
+-13.59 perscare cash
+-2.50 cafe cash
+
+1/22/2013
+x -111.66 trav_hot chap
+x -268.12 trav_trans chap
+-2.50 cafe cash
+-12 groc cash
+
+
+1/21/2013
+3.00 cafe cash
+
+
+1/20/2013
+-6 cafe cash
+-10 groc cash
+
+1/19/2013
+-3.00 cafe cash
+
+1/18/2013
+-16 groc cash
+-2.45 cafe cash
+
+1/17/2013
+x -10 bus_svc chap
+x -300 @xfer chap
+x 300 @xfer cash
+x -2 svcfee chap
+-80 grow cash
+-10 trans cash
+
+1/16/2013 3 cafe cash
+
+1/15/2013
+-4.00 groc cash
+
+1/14/2013
+-3 cafe cash
+1/14/2013 26.28 groc cash
+
+1/13/2013
+-3 cafe cash
+
+1/12/2013
+x -83.77 util_cell chap
+x -75 trans chap parking ticket
+-13 groc cash
+x -102 @xfer chap
+x -2 svcfee chap
+x 100 @xfer cash
+-50 grow cash
+-1.40 cafe cash
+
+1/11/2013
+-2 groc cash
+-20 trans cash
+-2.99 cafe cash
+x -812.25 @xfer chap
+812.25 @xfer chas_giv
+x -3062.25 @xfer chap
+3062.25 @xfer chas_fs
+x -2680.43 @xfer chap
+2680.43 @xfer chas_tax
+x -812.25 @xfer chap
+812.25 @xfer zsav
+x 8122.50 @income_1099 chap
+x -15 bus_svc chap
+
+1/10/2013
+2250 @xfer chas_giv
+x -2250 @xfer chap
+3440 @xfer zsav
+-3440 @xfer zsav repay
+x -2250 @xfer chap
+2250 @xfer zsav 10%
+x -7402.75 @taxes chap
+-44.00 groc cash
+-2.50 cafe cash
+x -20.05 util_mail chap mailboxforwarding
+
+1/9/2013
+-20.00 din cash
+-12.00 groc cash
+-700 rent cash
+x -800 @xfer chap
+800 @xfer cash
+
+1/8/2013
+-8.00 groc cash
+-11.00 din cash
+-90.00 perscare cash
+x -2.45 cafe chap
+1/7/2013 -16.00 din cash
+x 1/7/2013 -200 @xfer chap
+1/7/2013 200 @xfer cash
+1/7/2013 -5.00 cafe cash
+x 1/7/2013 -10 grow chap
+x 1/6/2012 -9.99 bus_edu chap
+x 1/6/2013 -24.44 groc chap
+1/6/2013 -2 cafe cash
+x -65.22 gift chap
+x 1/6/2013 -158.80 trav chap
+x 1/5/2013 -29 fit chap
+x 1/5/2013 -44.5 fit chap
+x 1/5/2013 -21 stor chap
+x 1/5/2013 -310.28 bus_equip chap
+x 1/4/2013 -20 trans chap
+1/4/2013 -2 cafe cash
+1/4/2013 -3 cafe cash
+1/4/2013 -10 grow cash
+1/3/2013 -5 cafe cash
+1/3/2013 -30 groc cash
+1/2/2013 -3 cafe cash
+1/2/2013 -5 laund cash
+1/2/2013 -3 cafe cash
+1/1/2013 -28 din cash
+1/1/2013 -5 cafe cash
+1/1/2013 -8 homeex cash
+1/1/2013 -1 din cash
+1/1/2013 -3 cafe cash
+
+x 1/1/2013 17921.21 @bal chap
+26920.32 @bal zsav
+
